@@ -31,12 +31,19 @@ const apiService = {
         return axiosClient.get('/candidate/resumes/my-apply');
     },
     // REcruiter API
-    getEmployerJobs: (params) => {
-        return axiosClient.get('/jobs', { params });
+    getEmployerJobs: () => {
+        return axiosClient.get('/jobs/employer/my-jobs');
     },
     getResumesByJobId: (jobId) => {
         return axiosClient.get(`/recruiter/resumes/jobs/${jobId}`);
-    }
+    },
+    getAllSkills: () => {
+        return axiosClient.get('/skills');
+    },
+    // create Job
+    createJob: (jobDTO) => {
+        return axiosClient.post('/jobs', jobDTO);
+    },
 
 };
 

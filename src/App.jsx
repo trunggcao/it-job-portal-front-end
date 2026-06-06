@@ -12,6 +12,7 @@ import LoginPage from './Auth/LoginPage';
 // Hãy điều chỉnh lại đường dẫn (path) này cho chính xác với cấu trúc thư mục thực tế của bạn
 import EmployerDashboard from './Employer/EmployerDashboard';
 import UserProfilePage from './Candidate/UserProfilePage';
+import CreateJob from './Employer/CreateJob';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -58,7 +59,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        {/* BỔ SUNG: Route trang Hồ sơ cá nhân (Yêu cầu đăng nhập mới xem được) */}
+        {/*Route trang Hồ sơ cá nhân (Yêu cầu đăng nhập mới xem được) */}
         <Route path="/profile" element={
           <PrivateRoute>
             <UserProfilePage />
@@ -69,6 +70,13 @@ function App() {
         <Route path="/employer/dashboard" element={
           <EmployerRoute>
             <EmployerDashboard />
+          </EmployerRoute>
+        } />
+
+        {/* 2. Trang tạo tin tuyển dụng mới */}
+        <Route path="/employer/create-job" element={
+          <EmployerRoute>
+            <CreateJob />
           </EmployerRoute>
         } />
 

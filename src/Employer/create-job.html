@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Tin Tuyển Dụng Mới - IT Job Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .form-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d6efd;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-form {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="#"><i class="bi bi-briefcase-fill me-2"></i>IT
+                JobPortal</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link text-white-50" href="#">Bảng tin</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="#">Quản lý tin đăng</a></li>
+                    <li class="nav-item"><a class="nav-link active text-primary" href="#">Tạo tin tuyển dụng</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="#">Duyệt ứng viên</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <span class="navbar-text fw-medium text-white"><i class="bi bi-building me-1 text-primary"></i> HR
+                        Manager</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle"><i
+                            class="bi bi-arrow-left"></i></a>
+                    <h2 class="h4 fw-bold text-dark mb-0">Đăng tin tuyển dụng công nghệ mới</h2>
+                </div>
+                <p class="text-secondary small">Tin đăng chính xác, rõ ràng về kỹ năng yêu cầu sẽ tiếp cận đúng ứng viên
+                    chất lượng cao tiềm năng.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="card card-form p-4 bg-white">
+                    <form>
+
+                        <div class="form-section">
+                            <div class="form-section-title"><i class="bi bi-info-circle-fill me-2"></i>1. Thông tin vị
+                                trí tuyển dụng</div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary">Tên vị trí công việc <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control py-2"
+                                    placeholder="Ví dụ: Senior Java Web Developer (Spring Boot)" required>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Địa điểm làm việc <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select py-2" required>
+                                        <option value="" disabled selected>Chọn thành phố</option>
+                                        <option value="HN">Hà Nội</option>
+                                        <option value="HCM">TP. Hồ Chí Minh</option>
+                                        <option value="DN">Đà Nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Hình thức làm việc <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select py-2" required>
+                                        <option value="FULL_TIME">Toàn thời gian (Full-time)</option>
+                                        <option value="PART_TIME">Bán thời gian (Part-time)</option>
+                                        <option value="REMOTE">Làm việc từ xa (Remote)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <label class="form-label small fw-bold text-secondary">Mức lương tối thiểu
+                                        ($)</label>
+                                    <input type="number" class="form-control py-2" placeholder="Ví dụ: 1000">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small fw-bold text-secondary">Mức lương tối đa ($)</label>
+                                    <input type="number" class="form-control py-2" placeholder="Ví dụ: 2500">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small fw-bold text-secondary">Số lượng cần tuyển <span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" class="form-control py-2" placeholder="Ví dụ: 3" min="1"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section mt-2">
+                            <div class="form-section-title"><i class="bi bi-file-earmark-text-fill me-2"></i>2. Nội dung
+                                chi tiết & Yêu cầu kỹ năng</div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary">Từ khóa kỹ năng liên quan <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control py-2"
+                                    placeholder="Nhập các thẻ cách nhau bằng dấu phẩy (Ví dụ: Java, Spring Boot, MySQL)"
+                                    required>
+                                <div class="form-text small">Giúp hệ thống tự động gợi ý bài đăng này đến các ứng viên
+                                    có kỹ năng phù hợp.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary">Mô tả công việc (Job Description)
+                                    <span class="text-danger">*</span></label>
+                                <textarea class="form-control" rows="5"
+                                    placeholder="- Nghiên cứu và phát triển hệ thống backend...&#10;- Thiết kế API RESTful chất lượng cao..."
+                                    required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary">Yêu cầu ứng viên (Job
+                                    Requirements) <span class="text-danger">*</span></label>
+                                <textarea class="form-control" rows="5"
+                                    placeholder="- Có kinh nghiệm từ 2 năm với lập trình hệ thống Java...&#10;- Sử dụng thành thạo cơ sở dữ liệu quan hệ MySQL..."
+                                    required></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small fw-bold text-secondary">Quyền lợi dành cho ứng viên <span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" rows="4"
+                                    placeholder="- Hưởng tháng lương thứ 13 cố định...&#10;- Cấp phát Laptop làm việc hiện đại..."
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section mt-2">
+                            <div class="form-section-title"><i class="bi bi-calendar-check-fill me-2"></i>3. Thời hạn
+                                tin đăng</div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Hạn cuối tiếp nhận hồ sơ
+                                        <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light text-muted"><i
+                                                class="bi bi-calendar3"></i></span>
+                                        <input type="date" class="form-control py-2" required>
+                                    </div>
+                                    <div class="form-text small">Hệ thống sẽ tự động đóng tin và ẩn nút ứng tuyển sau
+                                        ngày này.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 border-top pt-4">
+                            <button type="button" class="btn btn-outline-secondary px-4 py-2 fw-medium">Hủy bỏ</button>
+                            <button type="submit" class="btn btn-primary px-5 py-2 fw-bold shadow-sm"><i
+                                    class="bi bi-send-check me-1"></i> Xuất bản bài đăng</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white pt-3 pb-2 mt-5">
+        <div class="container text-center text-secondary small">
+            © 2026 IT Job Portal Dashboard. Bảo mật và quản trị thông tin doanh nghiệp.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -159,7 +159,7 @@ function JobListPage() {
                                             <div className="col">
                                                 <h5 className="fw-bold mb-1 fs-5">
                                                     <a href="#" className="text-decoration-none text-dark hover-primary">
-                                                        {job.title}
+                                                        {job.name}
                                                     </a>
                                                 </h5>
                                                 <h6 className="text-secondary fw-semibold mb-2 small">{job.companyName || "Công ty công nghệ"}</h6>
@@ -181,7 +181,9 @@ function JobListPage() {
                                             </div>
                                             <div className="col-md-auto text-md-end text-start border-start border-light-subtle ps-md-4">
                                                 <span className="text-danger fw-bold d-block mb-2 fs-5">
-                                                    {typeof job.salary === 'number' ? `${job.salary} vnđ` : job.salary || "Thỏa thuận"}
+                                                    {typeof job.salary === 'number' && job.salary > 0
+                                                        ? `${new Intl.NumberFormat('vi-VN').format(job.salary)} vnđ`
+                                                        : "Thỏa thuận"}
                                                 </span>
                                                 <Link to={`/jobs/${job.id}`} className="btn btn-primary btn-sm px-4 rounded-pill fw-medium">
                                                     Xem chi tiết
