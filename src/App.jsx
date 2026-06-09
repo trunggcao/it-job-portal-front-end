@@ -13,6 +13,7 @@ import LoginPage from './Auth/LoginPage';
 import EmployerDashboard from './Employer/EmployerDashboard';
 import UserProfilePage from './Candidate/UserProfilePage';
 import CreateJob from './Employer/CreateJob';
+import UpdateJob from './Employer/UpdateJob';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -77,6 +78,12 @@ function App() {
         <Route path="/employer/create-job" element={
           <EmployerRoute>
             <CreateJob />
+          </EmployerRoute>
+        } />
+
+        <Route path="/employer/update-job/:id" element={
+          <EmployerRoute>
+            <UpdateJob />
           </EmployerRoute>
         } />
 

@@ -2,12 +2,25 @@ import axiosClient from "./axiosClient";
 
 const apiService = {
 
+    // job api
     getAllJobs: (params) => {
         return axiosClient.get('/jobs', { params });
     },
     getJobById: (jobId) => {
         return axiosClient.get(`/jobs/${jobId}`);
     },
+    getJobsByCompanyId: (companyId) => {
+        return axiosClient.get(`/jobs/companies/${companyId}`);
+    },
+
+    createJob: (jobDTO) => {
+        return axiosClient.post('/jobs', jobDTO);
+    },
+    updateJob: (jobId, jobDTO) => {
+        return axiosClient.put(`/jobs/${jobId}`, jobDTO);
+    },
+
+    //
     getAllCompanies: (searchKeyword = "") => {
         return axiosClient.get(`/companies?search=${searchKeyword}`);
     },
@@ -40,10 +53,7 @@ const apiService = {
     getAllSkills: () => {
         return axiosClient.get('/skills');
     },
-    // create Job
-    createJob: (jobDTO) => {
-        return axiosClient.post('/jobs', jobDTO);
-    },
+
 
 };
 

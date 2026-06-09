@@ -25,7 +25,6 @@ function JobDetailPage() {
                 setLoading(true);
                 const response = await apiService.getJobById(id);
 
-                // Giả định backend trả về object job nằm trong response.data
                 setJob(response.data);
                 setError(null);
             } catch (err) {
@@ -110,7 +109,7 @@ function JobDetailPage() {
         );
     }
 
-    // 5. ĐỔ DATA ĐỘNG VÀO GIAO DIỆN (ĐÃ FIX TOÀN BỘ CLASS THÀNH CLASSNAME)
+    // 5. ĐỔ DATA ĐỘNG VÀO GIAO DIỆN 
     return (
         <div>
             {/* JOB HEADER SECTION */}
@@ -165,17 +164,10 @@ function JobDetailPage() {
                             <div className="mb-4">
                                 <h5 className="fw-bold text-dark fs-6"><i className="bi bi-file-earmark-person me-2 text-primary"></i>Yêu cầu ứng viên</h5>
                                 <div className="text-secondary lh-lg ps-1 mt-2 small" style={{ whitespace: 'pre-line' }}>
-                                    {job.requirements || "Chưa có thông tin yêu cầu cụ thể."}
+                                    {job.requirement || "Chưa có thông tin yêu cầu cụ thể."}
                                 </div>
                             </div>
 
-                            {/* Quyền lợi */}
-                            <div className="mb-2">
-                                <h5 className="fw-bold text-dark fs-6"><i className="bi bi-gift me-2 text-primary"></i>Quyền lợi được hưởng</h5>
-                                <div className="text-secondary lh-lg ps-1 mt-2 small" style={{ whitespace: 'pre-line' }}>
-                                    {job.benefits || "Hưởng các chế độ đãi ngộ theo quy định công ty."}
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -200,6 +192,13 @@ function JobDetailPage() {
                                     <div>
                                         <span className="text-muted small d-block">Cấp Bậc</span>
                                         <span className="fw-medium text-dark">{job.level || "Tất Cả"}</span>
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-start mb-3">
+                                    <div className="fs-4 text-primary me-3"><i className="bi bi-briefcase"></i></div>
+                                    <div>
+                                        <span className="text-muted small d-block">Loại công việc</span>
+                                        <span className="fw-medium text-dark">{job.typeJob || "Chưa xác định"}</span>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-start mb-3">

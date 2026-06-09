@@ -179,9 +179,13 @@ function EmployerDashboard() {
                                             >
                                                 <i className="bi bi-people-fill me-1"></i> Xem CV
                                             </button>
-                                            <button className="btn btn-link text-muted btn-xs p-1" title="Sửa bài đăng">
+                                            <Link
+                                                to={`/employer/update-job/${job.id}`}
+                                                className="btn btn-link text-warning btn-xs p-1"
+                                                title="Sửa bài đăng"
+                                            >
                                                 <i className="bi bi-pencil-square fs-6"></i>
-                                            </button>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))

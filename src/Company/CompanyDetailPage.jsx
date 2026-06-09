@@ -1,30 +1,39 @@
-import "./company.css"
+import "./company.css";
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import apiService from '../service/apiService';
+
 function CompanyDetailPage() {
     const { id } = useParams();
     const [company, setCompany] = useState(null);
+    const [activeJobs, setActiveJobs] = useState([]); // Khai báo state lưu danh sách việc làm
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchCompanyDetail = async () => {
+        const fetchCompanyAndJobsData = async () => {
             try {
                 setLoading(true);
-                const response = await apiService.getCompanyById(id);
-                setCompany(response.data);
+
+                // 1. Gọi API lấy chi tiết thông tin công ty
+                const companyResponse = await apiService.getCompanyById(id);
+                setCompany(companyResponse.data);
+
+                // 2. Gọi API lấy danh sách việc làm theo ID công ty từ Backend
+                const jobsResponse = await apiService.getJobsByCompanyId(id);
+                setActiveJobs(jobsResponse.data || []);
+
                 setError(null);
             } catch (err) {
-                console.error("Lỗi khi lấy chi tiết công ty:", err);
-                setError("Không thể tải thông tin công ty hoặc công ty không tồn tại.");
+                console.error("Lỗi khi tải dữ liệu chi tiết công ty:", err);
+                setError("Không thể tải thông tin công ty hoặc danh sách việc làm.");
             } finally {
                 setLoading(false);
             }
         };
 
         if (id) {
-            fetchCompanyDetail();
+            fetchCompanyAndJobsData();
         }
     }, [id]);
 
@@ -52,7 +61,6 @@ function CompanyDetailPage() {
         );
     }
 
-    const activeJobs = company.jobs || [];
     return (
         <div>
             {/* COMPANY HEADER BANNER */}
@@ -116,6 +124,7 @@ function CompanyDetailPage() {
 
                             <div className="card-body p-4">
                                 <div className="tab-content" id="companyTabContent">
+                                    {/* TAB 1: GIỚI THIỆU CÔNG TY */}
                                     <div className="tab-pane fade show active" id="about-content" role="tabpanel" aria-labelledby="about-tab">
                                         <h5 className="fw-bold text-dark mb-3">Về chúng tôi</h5>
                                         <div className="text-secondary lh-lg" style={{ whiteSpace: 'pre-line' }}>
@@ -141,18 +150,37 @@ function CompanyDetailPage() {
                                                                 <div className="col">
                                                                     <h6 className="fw-bold text-dark mb-1">
                                                                         <Link to={`/jobs/${job.id}`} className="text-decoration-none text-dark hover-primary fw-bold">
-                                                                            {job.title}
+                                                                            {job.name} {/* Thay đổi thành job.name khớp JobDTO */}
                                                                         </Link>
                                                                     </h6>
                                                                     <div className="d-flex flex-wrap gap-3 text-muted small mt-2">
                                                                         <span><i className="bi bi-geo-alt me-1"></i> {job.location || company.address}</span>
-                                                                        <span><i className="bi bi-cash me-1"></i> {job.salary || "Thỏa thuận"}</span>
-                                                                        <span><i className="bi bi-clock me-1"></i> {job.type || "Full-time"}</span>
+
+                                                                        {/* Format tiền tệ VNĐ chuẩn */}
+                                                                        <span className="text-danger fw-medium">
+                                                                            <i className="bi bi-cash me-1 text-muted"></i>
+                                                                            {typeof job.salary === 'number' && job.salary > 0
+                                                                                ? `${new Intl.NumberFormat('vi-VN').format(job.salary)} vnđ`
+                                                                                : "Thỏa thuận"}
+                                                                        </span>
+
+                                                                        <span> Cấp bậc: {job.level || "Intern"}</span>
                                                                     </div>
+
+                                                                    {/* Hiển thị nhanh danh sách Kỹ năng yêu cầu nếu có */}
+                                                                    {job.skills && job.skills.length > 0 && (
+                                                                        <div className="mt-2 d-flex flex-wrap gap-1">
+                                                                            {job.skills.map(skill => (
+                                                                                <span key={skill.id} className="badge bg-light text-secondary border small">
+                                                                                    {skill.name}
+                                                                                </span>
+                                                                            ))}
+                                                                        </div>
+                                                                    )}
                                                                 </div>
-                                                                <div className="col-md-auto text-md-end">
-                                                                    <Link to={`/jobs/${job.id}`} className="btn btn-outline-primary btn-sm px-4 rounded-pill fw-medium">
-                                                                        Xem tin
+                                                                <div className="col-md-auto text-md-end text-start border-start border-light-subtle ps-md-4">
+                                                                    <Link to={`/jobs/${job.id}`} className="btn btn-primary btn-sm px-4 rounded-pill fw-medium">
+                                                                        Xem chi tiết
                                                                     </Link>
                                                                 </div>
                                                             </div>
@@ -172,4 +200,5 @@ function CompanyDetailPage() {
         </div>
     );
 }
+
 export default CompanyDetailPage;
