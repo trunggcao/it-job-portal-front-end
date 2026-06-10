@@ -14,6 +14,8 @@ import EmployerDashboard from './Employer/EmployerDashboard';
 import UserProfilePage from './Candidate/UserProfilePage';
 import CreateJob from './Employer/CreateJob';
 import UpdateJob from './Employer/UpdateJob';
+import CreateCompany from './Employer/Company/CreateCompany';
+import CompanyCheckRoute from './Employer/Company/CompanyCheckRoute';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -70,20 +72,33 @@ function App() {
         {/* Route bảo mật dành riêng cho Nhà tuyển dụng */}
         <Route path="/employer/dashboard" element={
           <EmployerRoute>
-            <EmployerDashboard />
+            <CompanyCheckRoute>
+              <EmployerDashboard />
+            </CompanyCheckRoute>
           </EmployerRoute>
         } />
 
         {/* 2. Trang tạo tin tuyển dụng mới */}
         <Route path="/employer/create-job" element={
           <EmployerRoute>
-            <CreateJob />
+            <CompanyCheckRoute>
+              <CreateJob />
+            </CompanyCheckRoute>
           </EmployerRoute>
         } />
 
         <Route path="/employer/update-job/:id" element={
           <EmployerRoute>
-            <UpdateJob />
+            <CompanyCheckRoute>
+              <UpdateJob />
+            </CompanyCheckRoute>
+          </EmployerRoute>
+        } />
+
+        {/* 2. Trang tạo công ty mới */}
+        <Route path="/employer/create-company" element={
+          <EmployerRoute>
+            <CreateCompany />
           </EmployerRoute>
         } />
 

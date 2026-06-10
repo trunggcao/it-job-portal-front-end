@@ -20,7 +20,11 @@ const apiService = {
         return axiosClient.put(`/jobs/${jobId}`, jobDTO);
     },
 
-    //
+    // companies api
+
+    createCompany: (companyDTO) => {
+        return axiosClient.post('/companies', companyDTO);
+    },
     getAllCompanies: (searchKeyword = "") => {
         return axiosClient.get(`/companies?search=${searchKeyword}`);
     },
