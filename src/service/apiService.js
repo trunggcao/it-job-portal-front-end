@@ -47,6 +47,7 @@ const apiService = {
     getMyAppliedJobs: () => {
         return axiosClient.get('/candidate/resumes/my-apply');
     },
+
     // REcruiter API
     getEmployerJobs: () => {
         return axiosClient.get('/jobs/employer/my-jobs');
@@ -57,6 +58,14 @@ const apiService = {
     getAllSkills: () => {
         return axiosClient.get('/skills');
     },
+
+    // Company verification API
+    getHistoryVerification: (id) => {
+        return axiosClient.get(`/verifications/employer/history/${id}`);
+    },
+    createVerificationRequest: (verificationDTO) => {
+        return axiosClient.post('/verifications/employer', verificationDTO);
+    }
 
 
 };

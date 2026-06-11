@@ -9,13 +9,13 @@ import RegisterPage from './Auth/RegisterPage';
 import LoginPage from './Auth/LoginPage';
 
 // BỔ SUNG: Import trang Dashboard của Nhà tuyển dụng
-// Hãy điều chỉnh lại đường dẫn (path) này cho chính xác với cấu trúc thư mục thực tế của bạn
 import EmployerDashboard from './Employer/EmployerDashboard';
 import UserProfilePage from './Candidate/UserProfilePage';
 import CreateJob from './Employer/CreateJob';
 import UpdateJob from './Employer/UpdateJob';
 import CreateCompany from './Employer/Company/CreateCompany';
 import CompanyCheckRoute from './Employer/Company/CompanyCheckRoute';
+import VerifyCompany from './Employer/VerifyCompany/VerifyCompany';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -95,10 +95,17 @@ function App() {
           </EmployerRoute>
         } />
 
-        {/* 2. Trang tạo công ty mới */}
+        {/* Trang tạo công ty mới */}
         <Route path="/employer/create-company" element={
           <EmployerRoute>
             <CreateCompany />
+          </EmployerRoute>
+        } />
+
+        {/* Trang xác thực */}
+        <Route path="/employer/verify-company" element={
+          <EmployerRoute>
+            <VerifyCompany />
           </EmployerRoute>
         } />
 

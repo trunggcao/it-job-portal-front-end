@@ -7,26 +7,44 @@ function EmployerDashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Quản lý trạng thái xác thực và hồ sơ doanh nghiệp
+    const [isCompanyActive, setIsCompanyActive] = useState(false);
+    const [hasCompany, setHasCompany] = useState(false);
+
     const [selectedJob, setSelectedJob] = useState(null);
     const [currentResumes, setCurrentResumes] = useState([]);
     const [loadingResumes, setLoadingResumes] = useState(false);
 
     useEffect(() => {
-        const fetchMyJobs = async () => {
+        const fetchDashboardData = async () => {
             try {
                 setLoading(true);
-                const response = await apiService.getEmployerJobs();
-                setJobs(response.data || response);
+
+                // Sử dụng Promise.all để gọi song song 2 API độc lập
+                const [jobsResponse, profileResponse] = await Promise.all([
+                    apiService.getEmployerJobs(),
+                    apiService.getMyProfile()
+                ]);
+
+                setJobs(jobsResponse.data || jobsResponse);
+                const profileData = profileResponse.data || profileResponse;
+
+                if (profileData) {
+                    // Kiểm tra xem User này đã gắn với thực thể công ty nào chưa thông qua companyId
+                    setHasCompany(!!profileData.companyId);
+                    setIsCompanyActive(profileData.companyIsAtive === true);
+                }
+
                 setError(null);
             } catch (err) {
-                console.error("Lỗi lấy danh sách job:", err);
+                console.error("Lỗi đồng bộ dữ liệu phòng tuyển dụng:", err);
                 setError(err.response?.data?.message || "Không thể kết nối danh sách tuyển dụng.");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchMyJobs();
+        fetchDashboardData();
     }, []);
 
     // BỘ THỐNG KÊ TỰ ĐỘNG BẰNG DỮ LIỆU THỰC
@@ -70,17 +88,73 @@ function EmployerDashboard() {
 
     return (
         <div className="container my-5">
+
+            {/* BANNER THÔNG BÁO TRẠNG THÁI DOANH NGHIỆP */}
+            {!isCompanyActive ? (
+                // 1. GIAO DIỆN KHI CHƯA XÁC THỰC (Giữ nguyên logic cũ của bạn)
+                <div className="alert alert-warning border-0 shadow-sm d-flex align-items-center justify-content-between p-3 mb-4 rounded-3" role="alert">
+                    <div className="d-flex align-items-center text-dark">
+                        <i className="bi bi-shield-exclamation text-warning fs-3 me-3"></i>
+                        <div>
+                            <strong className="d-block mb-0.5">Tài khoản doanh nghiệp chưa được xác thực!</strong>
+                            <span className="small text-secondary">
+                                {!hasCompany
+                                    ? "Bạn chưa tạo thông tin công ty. Vui lòng cập nhật hồ sơ để gửi yêu cầu kích hoạt."
+                                    : "Hồ sơ công ty của bạn đang chờ quản trị viên hệ thống phê duyệt hoặc cần xác minh."}
+                            </span>
+                        </div>
+                    </div>
+                    {/* Đường dẫn điền thông tin hoặc nộp hồ sơ minh chứng */}
+                    <Link to={!hasCompany ? "/employer/create-company" : "/employer/verify-company"}>
+                        <button className="btn btn-warning btn-sm fw-bold px-3 shadow-sm text-dark">
+                            <i className="bi bi-patch-check-fill me-1"></i> Xác thực ngay
+                        </button>
+                    </Link>
+                </div>
+            ) : (
+                // 2. GIAO DIỆN KHI ĐÃ XÁC THỰC THÀNH CÔNG (Chuyển đổi nút thành Xem lịch sử)
+                <div className="alert alert-success border-0 shadow-sm d-flex align-items-center justify-content-between p-3 mb-4 rounded-3" role="alert" style={{ backgroundColor: '#e8f5e9' }}>
+                    <div className="d-flex align-items-center text-dark">
+                        <i className="bi bi-patch-check-fill text-success fs-3 me-3"></i>
+                        <div>
+                            <strong className="d-block mb-0.5 text-success">Doanh nghiệp đã được xác thực bảo mật!</strong>
+                            <span className="small text-muted">
+                                Hệ thống đã xác minh tính pháp lý. Bạn hiện có toàn quyền đăng tin và tiếp nhận CV từ các ứng viên.
+                            </span>
+                        </div>
+                    </div>
+                    {/* Đường dẫn chuyển sang nút kiểm tra và theo dõi lại lịch sử đã gửi */}
+                    <Link to="/employer/verify-company">
+                        <button className="btn btn-outline-success btn-sm fw-bold px-3 shadow-sm">
+                            <i className="bi bi-clock-history me-1"></i> Xem lịch sử xác thực
+                        </button>
+                    </Link>
+                </div>
+            )}
+
             {/* MAIN HEADER */}
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <div>
                     <h2 className="fw-bold text-dark mb-1">Trung tâm tuyển dụng</h2>
                     <p className="text-muted small mb-0">Dưới đây là hiệu suất tuyển dụng của doanh nghiệp bạn.</p>
                 </div>
-                <Link to="/employer/create-job" className="text-decoration-none">
-                    <button className="btn btn-primary btn-sm fw-bold px-3 py-2 shadow-sm">
-                        <i className="bi bi-plus-circle-fill me-2"></i>Đăng tin mới
+
+                {/* Kiểm soát nút Đăng tin mới dựa vào trạng thái Active */}
+                {isCompanyActive ? (
+                    <Link to="/employer/create-job" className="text-decoration-none">
+                        <button className="btn btn-primary btn-sm fw-bold px-3 py-2 shadow-sm">
+                            <i className="bi bi-plus-circle-fill me-2"></i>Đăng tin mới
+                        </button>
+                    </Link>
+                ) : (
+                    <button
+                        className="btn btn-secondary btn-sm fw-bold px-3 py-2 shadow-sm opacity-65"
+                        disabled
+                        title="Bạn cần xác thực tài khoản doanh nghiệp để sử dụng tính năng này"
+                    >
+                        <i className="bi bi-lock-fill me-2"></i>Đăng tin (Bị khóa)
                     </button>
-                </Link>
+                )}
             </div>
 
             {/* CARDS THỐNG KÊ */}
@@ -149,7 +223,9 @@ function EmployerDashboard() {
                             {jobs.length === 0 ? (
                                 <tr>
                                     <td colSpan="7" className="text-center py-4 text-muted">
-                                        Công ty của bạn chưa có bài đăng tuyển dụng nào.
+                                        {isCompanyActive
+                                            ? "Công ty của bạn chưa có bài đăng tuyển dụng nào."
+                                            : "Vui lòng hoàn tất xác thực công ty để thực hiện đăng bài tuyển dụng đầu tiên."}
                                     </td>
                                 </tr>
                             ) : (
@@ -207,7 +283,6 @@ function EmployerDashboard() {
                         </div>
 
                         <div className="modal-body p-4 text-dark" style={{ minHeight: '200px' }}>
-                            {/* Hiển thị Spinner nhỏ khi CV đang được API tải về */}
                             {loadingResumes ? (
                                 <div className="text-center py-5 text-secondary">
                                     <div className="spinner-border text-primary spinner-border-sm mb-2" role="status"></div>
@@ -233,8 +308,6 @@ function EmployerDashboard() {
                                         <tbody>
                                             {currentResumes.map((res) => (
                                                 <tr key={res.id}>
-                                                    {/* Lưu ý: Thay đổi trường dữ liệu (userName, email, url,...) 
-                                                        sao cho khớp chính xác với cấu trúc ResumeDTO mà Backend của bạn trả về */}
                                                     <td className="fw-bold text-dark">{res.userFullName || res.userName}</td>
                                                     <td className="text-secondary">{res.userEmail || res.email}</td>
                                                     <td className="text-muted">{res.createdAt}</td>

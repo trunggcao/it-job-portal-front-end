@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác Thực Doanh Nghiệp | Portal Tuyển Dụng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+
+        .table-responsive {
+            border-radius: 10px;
+        }
+
+        .badge-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-approved {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .badge-rejected {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-8 mb-3 mb-md-0">
+                <h2 class="fw-bold text-dark mb-1">Xác thực doanh nghiệp</h2>
+                <p class="text-muted small mb-0">Theo dõi lịch sử và gửi yêu cầu xác minh pháp lý của công ty tới Quản
+                    trị viên.</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <button class="btn btn-primary fw-bold px-4 py-2 shadow-sm" data-bs-toggle="modal"
+                    data-bs-target="#createRequestModal">
+                    <i class="bi bi-plus-circle-fill me-2"></i>Tạo yêu cầu xác minh
+                </button>
+            </div>
+        </div>
+
+        <div class="alert alert-info border-0 shadow-sm d-flex align-items-center p-3 mb-4 rounded-3" role="alert">
+            <i class="bi bi-info-circle-fill fs-4 me-3 text-info"></i>
+            <div>
+                <span class="small d-block text-dark fw-medium">Lưu ý quy trình duyệt:</span>
+                <span class="small text-secondary">Hồ sơ sau khi gửi sẽ được Admin kiểm tra và phản hồi trong vòng 24h
+                    đến 48h làm việc. Khi trạng thái chuyển thành <strong class="text-success">Đã duyệt</strong>, bạn sẽ
+                    được mở khóa tính năng Đăng tin tuyển dụng.</span>
+            </div>
+        </div>
+
+        <div class="card shadow-sm overflow-hidden mb-5">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h5 class="fw-bold text-dark mb-0">Lịch sử gửi yêu cầu xác thực</h5>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 text-dark small">
+                    <thead class="table-light text-secondary fw-semibold">
+                        <tr>
+                            <th class="ps-4" style="width: 120px;">Mã yêu cầu</th>
+                            <th>Ngày gửi</th>
+                            <th>Mã số thuế</th>
+                            <th>Tài liệu đính kèm</th>
+                            <th>Trạng thái</th>
+                            <th>Phản hồi từ Admin</th>
+                            <th class="text-center" style="width: 120px;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ps-4 fw-medium text-muted">#REQ-8821</td>
+                            <td>12/06/2026 09:15</td>
+                            <td class="fw-bold">0102030405</td>
+                            <td>
+                                <a href="#" class="text-decoration-none text-primary fw-medium">
+                                    <i class="bi bi-file-earmark-pdf-fill me-1 text-danger"></i> GPKD_GiaiDoan2.pdf
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge badge-pending px-2.5 py-1.5 rounded-pill">
+                                    <i class="bi bi-hourglass-split me-1"></i> Chờ kiểm duyệt
+                                </span>
+                            </td>
+                            <td class="text-muted italic">Đang chờ hệ thống phân phối người kiểm tra...</td>
+                            <td class="text-center">
+                                <button class="btn btn-link btn-sm text-secondary p-0" title="Xem chi tiết" disabled>
+                                    <i class="bi bi-eye fs-5"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-4 fw-medium text-muted">#REQ-7540</td>
+                            <td>05/06/2026 14:30</td>
+                            <td class="fw-bold">0102030405</td>
+                            <td>
+                                <a href="#" class="text-decoration-none text-primary fw-medium">
+                                    <i class="bi bi-image me-1 text-info"></i> Anh_GPKD_Goc.jpg
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge badge-rejected px-2.5 py-1.5 rounded-pill">
+                                    <i class="bi bi-x-circle-fill me-1"></i> Bị từ chối
+                                </span>
+                            </td>
+                            <td class="text-danger fw-medium">Ảnh chụp bị mờ thông tin Mã số thuế, vui lòng tải bản quét
+                                scan rõ nét hơn.</td>
+                            <td class="text-center">
+                                <button class="btn btn-link btn-sm text-primary p-0" title="Xem chi tiết">
+                                    <i class="bi bi-eye fs-5"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-4 fw-medium text-muted">#REQ-5122</td>
+                            <td>01/01/2026 08:00</td>
+                            <td class="fw-bold">0102030405</td>
+                            <td>
+                                <a href="#" class="text-decoration-none text-primary fw-medium">
+                                    <i class="bi bi-file-earmark-pdf-fill me-1 text-danger"></i> GPKD_BanGoc_2025.pdf
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge badge-approved px-2.5 py-1.5 rounded-pill">
+                                    <i class="bi bi-patch-check-fill me-1"></i> Đã phê duyệt
+                                </span>
+                            </td>
+                            <td class="text-success fw-medium">Thông tin chính xác. Doanh nghiệp đã được kích hoạt trạng
+                                thái Active.</td>
+                            <td class="text-center">
+                                <button class="btn btn-link btn-sm text-primary p-0" title="Xem chi tiết">
+                                    <i class="bi bi-eye fs-5"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createRequestModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="createRequestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold text-dark" id="createRequestModalLabel">
+                        <i class="bi bi-shield-check text-primary me-2"></i>Nộp hồ sơ xác minh công ty
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="verificationForm">
+                    <div class="modal-body p-4 text-dark">
+
+                        <div class="mb-3">
+                            <label for="taxCode" class="form-label fw-semibold small">Mã số thuế doanh nghiệp <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="taxCode"
+                                placeholder="Nhập mã số thuế (10 hoặc 13 số)" required pattern="[0-9]{10,13}">
+                            <div class="form-text x-small">Mã số thuế phải trùng khớp với thông tin trên Giấy phép kinh
+                                doanh.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="businessLicense" class="form-label fw-semibold small">Giấy phép đăng ký kinh
+                                doanh (GPKD) <span class="text-danger">*</span></label>
+                            <input class="form-control form-control-sm" type="file" id="businessLicense"
+                                accept=".pdf,.png,.jpg,.jpeg" required>
+                            <div class="form-text x-small">Chấp nhận file định dạng PDF, PNG, JPG (Dung lượng tối đa
+                                5MB).</div>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="note" class="form-label fw-semibold small">Ghi chú gửi Admin (Nếu có)</label>
+                            <textarea class="form-control form-control-sm" id="note" rows="3"
+                                placeholder="Nhập lời nhắn hoặc ghi chú bổ sung cho người kiểm duyệt..."></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer bg-light border-0">
+                        <button type="button" class="btn btn-secondary btn-sm fw-medium px-3"
+                            data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button type="submit" class="btn btn-primary btn-sm fw-bold px-4 shadow-sm">
+                            <i class="bi bi-send-fill me-1"></i> Gửi hồ sơ duyệt
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const taxCode = document.getElementById('taxCode').value;
+            const fileInput = document.getElementById('businessLicense').files[0];
+            const note = document.getElementById('note').value;
+
+            alert(`Giả lập gửi thành công!\nMã số thuế: ${taxCode}\nFile: ${fileInput.name}\nGhi chú: ${note || "Không có"}`);
+
+            // Đóng modal sau khi nộp thành công
+            const modalElement = document.getElementById('createRequestModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+
+            // Reset Form dữ liệu
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
