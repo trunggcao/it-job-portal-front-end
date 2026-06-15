@@ -7,6 +7,8 @@ import CompanyListPage from './Company/CompanyListPage';
 import CompanyDetailPage from './Company/CompanyDetailPage';
 import RegisterPage from './Auth/RegisterPage';
 import LoginPage from './Auth/LoginPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // BỔ SUNG: Import trang Dashboard của Nhà tuyển dụng
 import EmployerDashboard from './Employer/EmployerDashboard';
@@ -16,6 +18,13 @@ import UpdateJob from './Employer/UpdateJob';
 import CreateCompany from './Employer/Company/CreateCompany';
 import CompanyCheckRoute from './Employer/Company/CompanyCheckRoute';
 import VerifyCompany from './Employer/VerifyCompany/VerifyCompany';
+import AdminLayout from './Layout/AdminLayout';
+import AdminSkills from './Admin/Skills/AdminSkills';
+import AdminDashboard from './Admin/AdminDashboard';
+import AdminUsers from './Admin/Users/AdminUsers';
+import AdminJobs from './Admin/Jobs/AdminJobs';
+import AdminCompanies from './Admin/Companies/AdminCompanies';
+import AdminBlogs from './Admin/Blogs/AdminBlogs';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -41,76 +50,90 @@ const PrivateRoute = ({ children }) => {
 
 function App() {
   return (
-    <Routes>
-      {/* Cấu hình MainLayout bọc xung quanh các trang */}
-      <Route element={<MainLayout />}>
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
+      <Routes>
+        {/* Cấu hình MainLayout bọc xung quanh các trang */}
+        <Route element={<MainLayout />}>
 
-        {/* Tự động chuyển hướng từ trang chủ "/" sang "/jobs" */}
-        <Route path="/" element={<Navigate to="/jobs" replace />} />
+          {/* Tự động chuyển hướng từ trang chủ "/" sang "/jobs" */}
+          <Route path="/" element={<Navigate to="/jobs" replace />} />
 
-        {/* Trang danh sách việc làm */}
-        <Route path="/jobs" element={<JobListPage />} />
+          {/* Trang danh sách việc làm */}
+          <Route path="/jobs" element={<JobListPage />} />
 
-        {/* Trang chi tiết việc làm */}
-        <Route path="/jobs/:id" element={<JobDetailPage />} />
+          {/* Trang chi tiết việc làm */}
+          <Route path="/jobs/:id" element={<JobDetailPage />} />
 
-        {/* Trang danh sách và chi tiết công ty */}
-        <Route path="/companies" element={<CompanyListPage />} />
-        <Route path="/companies/:id" element={<CompanyDetailPage />} />
+          {/* Trang danh sách và chi tiết công ty */}
+          <Route path="/companies" element={<CompanyListPage />} />
+          <Route path="/companies/:id" element={<CompanyDetailPage />} />
 
-        {/* Xác thực tài khoản */}
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+          {/* Xác thực tài khoản */}
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
-        {/*Route trang Hồ sơ cá nhân (Yêu cầu đăng nhập mới xem được) */}
-        <Route path="/profile" element={
-          <PrivateRoute>
-            <UserProfilePage />
-          </PrivateRoute>
-        } />
+          {/*Route trang Hồ sơ cá nhân (Yêu cầu đăng nhập mới xem được) */}
+          <Route path="/profile" element={
+            <PrivateRoute>
+              <UserProfilePage />
+            </PrivateRoute>
+          } />
 
-        {/* Route bảo mật dành riêng cho Nhà tuyển dụng */}
-        <Route path="/employer/dashboard" element={
-          <EmployerRoute>
-            <CompanyCheckRoute>
-              <EmployerDashboard />
-            </CompanyCheckRoute>
-          </EmployerRoute>
-        } />
+          {/* Route bảo mật dành riêng cho Nhà tuyển dụng */}
+          <Route path="/employer/dashboard" element={
+            <EmployerRoute>
+              <CompanyCheckRoute>
+                <EmployerDashboard />
+              </CompanyCheckRoute>
+            </EmployerRoute>
+          } />
 
-        {/* 2. Trang tạo tin tuyển dụng mới */}
-        <Route path="/employer/create-job" element={
-          <EmployerRoute>
-            <CompanyCheckRoute>
-              <CreateJob />
-            </CompanyCheckRoute>
-          </EmployerRoute>
-        } />
+          {/* 2. Trang tạo tin tuyển dụng mới */}
+          <Route path="/employer/create-job" element={
+            <EmployerRoute>
+              <CompanyCheckRoute>
+                <CreateJob />
+              </CompanyCheckRoute>
+            </EmployerRoute>
+          } />
 
-        <Route path="/employer/update-job/:id" element={
-          <EmployerRoute>
-            <CompanyCheckRoute>
-              <UpdateJob />
-            </CompanyCheckRoute>
-          </EmployerRoute>
-        } />
+          <Route path="/employer/update-job/:id" element={
+            <EmployerRoute>
+              <CompanyCheckRoute>
+                <UpdateJob />
+              </CompanyCheckRoute>
+            </EmployerRoute>
+          } />
 
-        {/* Trang tạo công ty mới */}
-        <Route path="/employer/create-company" element={
-          <EmployerRoute>
-            <CreateCompany />
-          </EmployerRoute>
-        } />
+          {/* Trang tạo công ty mới */}
+          <Route path="/employer/create-company" element={
+            <EmployerRoute>
+              <CreateCompany />
+            </EmployerRoute>
+          } />
 
-        {/* Trang xác thực */}
-        <Route path="/employer/verify-company" element={
-          <EmployerRoute>
-            <VerifyCompany />
-          </EmployerRoute>
-        } />
+          {/* Trang xác thực */}
+          <Route path="/employer/verify-company" element={
+            <EmployerRoute>
+              <VerifyCompany />
+            </EmployerRoute>
+          } />
+        </Route>
 
-      </Route>
-    </Routes>
+        {/* Trang Admin */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="jobs" element={<AdminJobs />} />
+          <Route path="companies" element={<AdminCompanies />} />
+          <Route path="blogs" element={<AdminBlogs />} />
+          <Route path="skills" element={<AdminSkills />} />
+
+        </Route>
+      </Routes>
+    </>
   );
 }
 

@@ -43,10 +43,13 @@ function LoginPage() {
 
                 // Lưu thông tin user và role để ẩn/hiển thị giao diện ở Frontend
                 localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("role", data.user.role); // Ví dụ: "ROLE_CANDIDATE" hoặc "ROLE_EMPLOYER"
+                localStorage.setItem("role", data.user.role); // "ROLE_CANDIDATE" hoặc "ROLE_EMPLOYER"
 
                 // Điều hướng người dùng dựa trên vai trò (Role) sau khi đăng nhập thành công
-                if (data.user.role === "ROLE_EMPLOYER") {
+                if (data.user.role === "ROLE_ADMIN") {
+                    navigate('/admin/dashboard');
+                }
+                else if (data.user.role === "ROLE_EMPLOYER") {
                     navigate('/employer/dashboard'); // Trang quản lý của nhà tuyển dụng
                 } else {
                     navigate('/jobs'); // Trang danh sách việc làm cho ứng viên
@@ -79,7 +82,7 @@ function LoginPage() {
                             <p className="text-muted small">Chào mừng bạn quay trở lại với IT Job Portal</p>
                         </div>
 
-                        {/* HIỂN THỊ THÔNG BÁO LỖI NẾU CÓ */}
+                        {/* HIỂN THỊ THÔNG BÁO LỖI */}
                         {error && (
                             <div className="alert alert-danger small py-2 animate__animated animate__fadeIn" role="alert">
                                 <i className="bi bi-exclamation-circle-fill me-2"></i> {error}

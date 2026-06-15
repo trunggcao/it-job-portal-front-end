@@ -55,8 +55,15 @@ const apiService = {
     getResumesByJobId: (jobId) => {
         return axiosClient.get(`/recruiter/resumes/jobs/${jobId}`);
     },
+
+    //skill API
+
     getAllSkills: () => {
         return axiosClient.get('/skills');
+    },
+
+    createSkill: (skillDTO) => {
+        return axiosClient.post('/skills', skillDTO);
     },
 
     // Company verification API
