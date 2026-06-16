@@ -72,7 +72,22 @@ const apiService = {
     },
     createVerificationRequest: (verificationDTO) => {
         return axiosClient.post('/verifications/employer', verificationDTO);
-    }
+    },
+
+    // ADMIN API
+    getAllUsers: (keyword = "") => {
+        return axiosClient.get('/admin/users', {
+            params: {
+                keyword: keyword
+            }
+        });
+    },
+    getUserById: (id) => {
+        return axiosClient.get(`/users/${id}`);
+    },
+    updateUser: (id, userDTO) => {
+        return axiosClient.put(`/users/${id}`, userDTO);
+    },
 
 
 };

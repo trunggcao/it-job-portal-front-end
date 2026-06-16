@@ -54,7 +54,7 @@ function AdminCompanies() {
                 {/* Tiêu đề & Thanh tìm kiếm */}
                 <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
                     <h5 className="fw-bold text-dark mb-0">
-                        <i className="bi bi-building-fill text-danger me-2"></i>Xác thực hồ sơ doanh nghiệp
+                        <i className="bi bi-building-fill text-danger me-2"></i>Danh sách các doanh nghiệp
                     </h5>
 
                     <form onSubmit={handleSearchSubmit} className="search-box input-group input-group-sm">
