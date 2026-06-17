@@ -3,7 +3,6 @@ import React from 'react';
 function AdminDashboard() {
     return (
         <div className="dashboard-page-container">
-            {/* Styles chuyên biệt cho Dashboard */}
             <style>{`
                 .stat-card {
                     border: none;
@@ -17,7 +16,6 @@ function AdminDashboard() {
                 }
             `}</style>
 
-            {/* === CÁC THẺ THỐNG KÊ (STAT CARDS) === */}
             <div className="row g-3 mb-4">
                 {/* Users Card */}
                 <div className="col-md-4 col-lg-2.4 col-6">
@@ -70,6 +68,20 @@ function AdminDashboard() {
                         <div className="d-flex align-items-center justify-content-between">
                             <div>
                                 <span className="text-muted small d-block mb-1">Companies</span>
+                                <h3 className="fw-bold m-0">120</h3>
+                            </div>
+                            <div className="fs-3 text-danger bg-danger-subtle rounded p-2 px-3">
+                                <i className="bi bi-building"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-6 col-lg-2.4 col-6">
+                    <div className="card stat-card p-3 bg-white">
+                        <div className="d-flex align-items-center justify-content-between">
+                            <div>
+                                <span className="text-muted small d-block mb-1">CompanyVerifications</span>
                                 <h3 className="fw-bold m-0">120</h3>
                             </div>
                             <div className="fs-3 text-danger bg-danger-subtle rounded p-2 px-3">

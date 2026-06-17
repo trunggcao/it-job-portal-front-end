@@ -55,6 +55,9 @@ function AdminLayout() {
                         <Link to="/admin/companies" className={`nav-link border-0 text-start ${isActive('/admin/companies')}`}>
                             <i className="bi bi-building-fill"></i> Công ty (Company)
                         </Link>
+                        <Link to="/admin/companyverifications" className={`nav-link border-0 text-start ${isActive('/admin/companyverifications')}`}>
+                            <i className="bi bi-newspaper"></i> Xác thực công ty (Company Verification)
+                        </Link>
                         <Link to="/admin/blogs" className={`nav-link border-0 text-start ${isActive('/admin/blogs')}`}>
                             <i className="bi bi-newspaper"></i> Bài viết (Blog)
                         </Link>

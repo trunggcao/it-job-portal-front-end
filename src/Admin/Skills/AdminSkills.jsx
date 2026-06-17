@@ -7,10 +7,13 @@ function AdminSkills() {
     const [skillsList, setSkillsList] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // === Các State quản lý Form thêm mới ===
+    // === Các State quản lý Form (Dùng chung cho cả Thêm và Sửa) ===
     const [showModal, setShowModal] = useState(false);
     const [newSkillName, setNewSkillName] = useState('');
     const [submitting, setSubmitting] = useState(false);
+
+    // State phân biệt hành động: null là Thêm mới, nếu có giá trị (object skill) là Đang Sửa
+    const [editingSkill, setEditingSkill] = useState(null);
 
     // Hàm lấy danh sách kỹ năng từ API
     const fetchSkills = async () => {
@@ -31,8 +34,30 @@ function AdminSkills() {
         fetchSkills();
     }, []);
 
-    // Hàm xử lý gửi dữ liệu Form Thêm kỹ năng
-    const handleCreateSkillSubmit = async (e) => {
+    // Kích hoạt khi bấm nút Sửa trên dòng dữ liệu
+    const handleEditClick = (skill) => {
+        setEditingSkill(skill);
+        setNewSkillName(skill.name);
+        setShowModal(true);
+    };
+
+    // Kích hoạt khi bấm nút Thêm kỹ năng mới ở trên đầu
+    const handleCreateClick = () => {
+        setEditingSkill(null);
+        setNewSkillName('');
+        setShowModal(true);
+    };
+
+    // Hàm đóng Modal và dọn dẹp bộ nhớ state
+    const handleCloseModal = () => {
+        if (submitting) return;
+        setShowModal(false);
+        setNewSkillName('');
+        setEditingSkill(null);
+    };
+
+    // Hàm xử lý gửi dữ liệu Form (Hợp nhất Thêm & Sửa)
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
 
         // Kiểm tra hợp lệ dữ liệu đầu vào
@@ -47,20 +72,22 @@ function AdminSkills() {
                 name: newSkillName.trim()
             };
 
-            // Gọi API lưu vào DB
-            await apiService.createSkill(skillDTO);
+            if (editingSkill) {
+                // UPDATE
+                await apiService.updateSkill(editingSkill.id, skillDTO);
+                toast.success(`Cập nhật thành công thành kỹ năng "${skillDTO.name}"!`);
+            } else {
+                //CREATE
+                await apiService.createSkill(skillDTO);
+                toast.success(`Thêm kỹ năng "${skillDTO.name}" thành công!`);
+            }
 
-            // Bắn thông báo thành công góc trên bên phải bằng react-toastify
-            toast.success(`Thêm kỹ năng "${skillDTO.name}" thành công!`);
-
-            // Reset dữ liệu, đóng modal và nạp làm mới danh sách
-            setNewSkillName('');
-            setShowModal(false);
+            // Đồng bộ lại dữ liệu sau khi xử lý API thành công
+            handleCloseModal();
             fetchSkills();
         } catch (error) {
-            console.error("Lỗi khi thêm kỹ năng:", error);
-            // Bắn thông báo lỗi dựa trên phản hồi từ server
-            const errorMsg = error.response?.data?.message || "Thêm kỹ năng thất bại, vui lòng thử lại!";
+            console.error("Lỗi khi xử lý form kỹ năng:", error);
+            const errorMsg = error.response?.data?.message || "Thao tác thất bại, vui lòng thử lại!";
             toast.error(errorMsg);
         } finally {
             setSubmitting(false);
@@ -69,7 +96,7 @@ function AdminSkills() {
 
     return (
         <div className="skills-page-container">
-            {/* Styles dành riêng cho trang quản lý Kỹ năng */}
+
             <style>{`
                 .stat-card {
                     border: none;
@@ -112,8 +139,8 @@ function AdminSkills() {
                     <h5 className="fw-bold text-dark mb-0">
                         <i className="bi bi-tags-fill text-success me-2"></i>Quản lý thẻ kỹ năng (Skills)
                     </h5>
-                    {/* Bắt sự kiện Click để mở Bootstrap Modal */}
-                    <button className="btn btn-success btn-sm fw-semibold px-3" onClick={() => setShowModal(true)}>
+                    {/* Bấm gọi hàm khởi tạo trạng thái Thêm mới */}
+                    <button className="btn btn-success btn-sm fw-semibold px-3" onClick={handleCreateClick}>
                         <i className="bi bi-plus-lg me-1"></i>Thêm Kỹ năng
                     </button>
                 </div>
@@ -155,10 +182,11 @@ function AdminSkills() {
                                         <td className="text-secondary small">{skill.createAt || 'Chưa rõ'}</td>
                                         <td>{skill.usage || '0 bài đăng'}</td>
                                         <td>
+                                            {/* NÚT SỬA: Gọi hàm truyền nguyên object skill đang chọn vào */}
                                             <button
                                                 className="btn btn-sm btn-light text-warning border-light-subtle me-1"
-                                                title="Chỉnh sửa"
-                                                onClick={() => alert(`Sửa kỹ năng: ${skill.name}`)}
+                                                title="Chỉnh sửa tên kỹ năng"
+                                                onClick={() => handleEditClick(skill)}
                                             >
                                                 <i className="bi bi-pencil-square"></i>
                                             </button>
@@ -178,7 +206,6 @@ function AdminSkills() {
                 </div>
             </div>
 
-            {/* === 3. BOOTSTRAP MODAL FORM THÊM KỸ NĂNG === */}
             {showModal && (
                 <>
                     <div
@@ -186,26 +213,25 @@ function AdminSkills() {
                         tabIndex="-1"
                         role="dialog"
                         style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-                        onClick={() => !submitting && setShowModal(false)} // Click ra ngoài nền để đóng form (khi không submitting)
+                        onClick={handleCloseModal}
                     >
-                        {/* modal-dialog-centered giúp căn giữa màn hình theo chiều dọc */}
                         <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-content border-0 shadow-lg" style={{ borderRadius: '12px' }}>
 
-                                {/* Modal Header */}
                                 <div className="modal-header border-bottom-0 pb-0">
-                                    <h5 className="modal-title fw-bold text-dark">Thêm thẻ kỹ năng mới</h5>
+                                    <h5 className="modal-title fw-bold text-dark">
+                                        {editingSkill ? `Chỉnh sửa tên kỹ năng (ID: #${editingSkill.id})` : "Thêm thẻ kỹ năng mới"}
+                                    </h5>
                                     <button
                                         type="button"
                                         className="btn-close"
                                         disabled={submitting}
-                                        onClick={() => setShowModal(false)}
+                                        onClick={handleCloseModal}
                                     ></button>
                                 </div>
 
-                                {/* Form Wrapper */}
-                                <form onSubmit={handleCreateSkillSubmit}>
-                                    {/* Modal Body */}
+                                {/* Form gửi dữ liệu */}
+                                <form onSubmit={handleFormSubmit}>
                                     <div className="modal-body py-4">
                                         <div className="mb-2">
                                             <label className="form-label small fw-semibold text-secondary">
@@ -224,13 +250,13 @@ function AdminSkills() {
                                         </div>
                                     </div>
 
-                                    {/* Modal Footer */}
+                                    {/* Modal Footer linh động chữ hiển thị của nút Submit */}
                                     <div className="modal-footer border-top-0 pt-0">
                                         <button
                                             type="button"
                                             className="btn btn-sm btn-light border fw-medium px-3"
                                             disabled={submitting}
-                                            onClick={() => setShowModal(false)}
+                                            onClick={handleCloseModal}
                                         >
                                             Hủy bỏ
                                         </button>
@@ -245,7 +271,7 @@ function AdminSkills() {
                                                     Đang lưu...
                                                 </>
                                             ) : (
-                                                "Xác nhận"
+                                                editingSkill ? "Cập nhật" : "Xác nhận"
                                             )}
                                         </button>
                                     </div>
@@ -255,7 +281,7 @@ function AdminSkills() {
                         </div>
                     </div>
 
-                    {/* Lớp Backdrop làm mờ toàn cảnh phía sau*/}
+                    {/* Lớp Backdrop làm mờ toàn cảnh */}
                     <div className="modal-backdrop fade show"></div>
                 </>
             )}

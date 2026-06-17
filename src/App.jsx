@@ -25,6 +25,8 @@ import AdminUsers from './Admin/Users/AdminUsers';
 import AdminJobs from './Admin/Jobs/AdminJobs';
 import AdminCompanies from './Admin/Companies/AdminCompanies';
 import AdminBlogs from './Admin/Blogs/AdminBlogs';
+import AdminCompanyVerifications from './Admin/Companies/AdminCompanyVerifications';
+import AdminDetailCompanyVerification from './Admin/Companies/AdminDetailCompanyVerification';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -130,7 +132,8 @@ function App() {
           <Route path="companies" element={<AdminCompanies />} />
           <Route path="blogs" element={<AdminBlogs />} />
           <Route path="skills" element={<AdminSkills />} />
-
+          <Route path="companyverifications" element={<AdminCompanyVerifications />} />
+          <Route path="companyverifications/:id" element={<AdminDetailCompanyVerification />} />
         </Route>
       </Routes>
     </>

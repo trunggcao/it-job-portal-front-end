@@ -13,6 +13,7 @@ const apiService = {
         return axiosClient.get(`/jobs/companies/${companyId}`);
     },
 
+
     createJob: (jobDTO) => {
         return axiosClient.post('/jobs', jobDTO);
     },
@@ -66,12 +67,28 @@ const apiService = {
         return axiosClient.post('/skills', skillDTO);
     },
 
+    updateSkill: (id, skillDTO) => {
+        return axiosClient.put(`/skills/${id}`, skillDTO);
+    },
+
     // Company verification API
     getHistoryVerification: (id) => {
         return axiosClient.get(`/verifications/employer/history/${id}`);
     },
     createVerificationRequest: (verificationDTO) => {
         return axiosClient.post('/verifications/employer', verificationDTO);
+    },
+    getAllVerificationRequests: () => {
+        return axiosClient.get('/verifications/admin');
+    },
+    getVerificationRequestById: (id) => {
+        return axiosClient.get(`/verifications/${id}`);
+    },
+    approveVerificationRequest: (id) => {
+        return axiosClient.put(`/verifications/admin/approve-verification/${id}`);
+    },
+    rejectVerificationRequest: (id, rejectData) => {
+        return axiosClient.put(`/verifications/admin/reject-verification/${id}`, rejectData);
     },
 
     // ADMIN API
