@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
-import './AdminLayout.css'; // BỔ SUNG: Import file CSS riêng biệt tại đây
+import './AdminLayout.css';
 
 function AdminLayout() {
     const navigate = useNavigate();

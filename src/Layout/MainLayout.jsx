@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
+import './MainLayout.css';
 
 function MainLayout() {
     const navigate = useNavigate();
@@ -50,27 +51,40 @@ function MainLayout() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto fw-medium">
                             <li className="nav-item">
-                                <Link className="nav-link text-secondary" to="/jobs">Trang chủ</Link>
+                                <Link className="nav-link" to="/jobs">Trang chủ</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-secondary" to="/jobs">Việc làm</Link>
+                                <Link className="nav-link" to="/jobs">Việc làm</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-secondary" to="/companies">Công ty</Link>
+                                <Link className="nav-link" to="/companies">Công ty</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-secondary" to="/companies">Tin tức</Link>
+                                <Link className="nav-link" to="/companies">Tin tức</Link>
                             </li>
                             {/* Chỉ hiển thị menu Hồ sơ / CV nếu tài khoản đăng nhập là Ứng viên */}
                             {currentUser && currentUser.role === 'ROLE_CANDIDATE' && (
                                 <li className="nav-item">
-                                    <Link className="nav-link text-secondary" to="/profile">Hồ sơ / CV</Link>
+                                    <Link className="nav-link" to="/profile">Hồ sơ / CV</Link>
                                 </li>
                             )}
                             {/* Thêm link quản trị nhanh nếu tài khoản đăng nhập là Nhà tuyển dụng */}
                             {currentUser && currentUser.role === 'ROLE_EMPLOYER' && (
                                 <li className="nav-item">
-                                    <Link className="nav-link text-warning" to="/employer/dashboard">Quản lý tuyển dụng</Link>
+                                    <Link className="nav-link nav-link-hot" to="/employer/dashboard">Quản lý tuyển dụng</Link>
+                                </li>
+                            )}
+                            {currentUser && currentUser.role === 'ROLE_EMPLOYER' && (
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link nav-link-hot"
+                                        to="/employer/find-candidates"
+                                    >
+                                        Tìm kiếm ứng viên
+                                        <span className="badge bg-danger ms-2 badge-hot">
+                                            HOT
+                                        </span>
+                                    </Link>
                                 </li>
                             )}
                         </ul>
