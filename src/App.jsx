@@ -28,6 +28,8 @@ import AdminBlogs from './Admin/Blogs/AdminBlogs';
 import AdminCompanyVerifications from './Admin/Companies/AdminCompanyVerifications';
 import AdminDetailCompanyVerification from './Admin/Companies/AdminDetailCompanyVerification';
 import FindCandidate from './Employer/FindCandidate/FindCandidate';
+import CandidateProfile from './Candidate/CandidateProfile/CandidateProfile';
+import CandidateDetail from './Employer/FindCandidate/CandidateDetail';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -82,6 +84,12 @@ function App() {
               <UserProfilePage />
             </PrivateRoute>
           } />
+          {/*Route trang Hồ sơ OpenToWork (Yêu cầu đăng nhập mới xem được) */}
+          <Route path="/profile-cv" element={
+            <PrivateRoute>
+              <CandidateProfile />
+            </PrivateRoute>
+          } />
 
           {/* Route bảo mật dành riêng cho Nhà tuyển dụng */}
           <Route path="/employer/dashboard" element={
@@ -126,6 +134,11 @@ function App() {
           <Route path="/employer/find-candidates" element={
             <EmployerRoute>
               <FindCandidate />
+            </EmployerRoute>
+          } />
+          <Route path="/employer/candidate-cv/:id" element={
+            <EmployerRoute>
+              <CandidateDetail />
             </EmployerRoute>
           } />
         </Route>

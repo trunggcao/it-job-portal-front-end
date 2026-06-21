@@ -62,6 +62,9 @@ const apiService = {
     getAllSkills: () => {
         return axiosClient.get('/skills');
     },
+    searchSkills: (keyword) => {
+        return axiosClient.get(`/skills/search?keyword=${keyword}`);
+    },
 
     createSkill: (skillDTO) => {
         return axiosClient.post('/skills', skillDTO);
@@ -106,6 +109,52 @@ const apiService = {
         return axiosClient.put(`/users/${id}`, userDTO);
     },
 
+
+    // Profile Candidate API
+    getCandidateProfile: (id) => {
+        return axiosClient.get(`/candidate/profiles/${id}`);
+    },
+    createOrSaveCandidateProfile: (id, profileDTO) => {
+        return axiosClient.post(`/candidate/profiles/save/${id}`, profileDTO);
+    },
+
+    // Project Candidate API
+    getCandidateProjectsByUserId: (id) => {
+        return axiosClient.get(`/candidate/projects/user/${id}`);
+    },
+    createCandidateProject: (id, projectDTO) => {
+        return axiosClient.post(`/candidate/projects/add/${id}`, projectDTO);
+    },
+    updateCandidateProject: (projectId, projectDTO) => {
+        return axiosClient.put(`/candidate/projects/update/${projectId}`, projectDTO);
+    },
+    deleteCandidateProject: (projectId) => {
+        return axiosClient.delete(`/candidate/projects/delete/${projectId}`);
+    },
+
+    // Find Candidate API (employer)
+    findCandidates: (params) => {
+        return axiosClient.get('/candidate/profiles/search', { params });
+    },
+    getCandidateProfileDetail: (profileId, employerId) => {
+        return axiosClient.get(`/candidate/profiles/details/${profileId}`, {
+            params: {
+                employerId: employerId
+            }
+        });
+    },
+    getCandidateProjectsByProfileId: (id) => {
+        return axiosClient.get(`/candidate/projects/details/${id}`);
+    },
+    // unlock profile by emloyer
+    unlockCandidateProfile: (profileId, employerId) => {
+        return axiosClient.post('/candidate/profiles/unlock', null, {
+            params: {
+                profileId: profileId,
+                employerId: employerId
+            }
+        });
+    },
 
 };
 
