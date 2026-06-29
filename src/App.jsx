@@ -30,6 +30,8 @@ import AdminDetailCompanyVerification from './Admin/Companies/AdminDetailCompany
 import FindCandidate from './Employer/FindCandidate/FindCandidate';
 import CandidateProfile from './Candidate/CandidateProfile/CandidateProfile';
 import CandidateDetail from './Employer/FindCandidate/CandidateDetail';
+import BlogListPage from './Blog/BlogListPage';
+import BlogDetailPage from './Blog/BlogDetailPage';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -73,6 +75,10 @@ function App() {
           {/* Trang danh sách và chi tiết công ty */}
           <Route path="/companies" element={<CompanyListPage />} />
           <Route path="/companies/:id" element={<CompanyDetailPage />} />
+
+          {/* Blog*/}
+          <Route path="/blogs" element={<BlogListPage />} />
+          <Route path="/blogs/:id" element={<BlogDetailPage />} />
 
           {/* Xác thực tài khoản */}
           <Route path="/register" element={<RegisterPage />} />

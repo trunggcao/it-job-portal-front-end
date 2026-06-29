@@ -60,7 +60,7 @@ function MainLayout() {
                                 <Link className="nav-link" to="/companies">Công ty</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/companies">Tin tức</Link>
+                                <Link className="nav-link" to="/blogs">Tin tức</Link>
                             </li>
                             {/* Chỉ hiển thị menu Hồ sơ / CV nếu tài khoản đăng nhập là Ứng viên */}
                             {currentUser && currentUser.role === 'ROLE_CANDIDATE' && (

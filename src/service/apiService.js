@@ -156,6 +156,34 @@ const apiService = {
         });
     },
 
+    // blog
+    getPublishedBlogs: () => {
+        return axiosClient.get('/blogs');
+    },
+    getBlogDetail: (id) => {
+        return axiosClient.get(`/blogs/${id}`);
+    },
+    getBlogsByCategory: (categoryId) => {
+        return axiosClient.get(`/blogs/category/${categoryId}`);
+    },
+    searchBlogs: (keyword) => {
+        return axiosClient.get(`/blogs/search?keyword=${keyword}`);
+    },
+    searchBlogsByCategory: (categoryId, keyword) => {
+        return axiosClient.get(`/blogs/category/${categoryId}/search?keyword=${keyword}`);
+    },
+
+    // admin blog
+    // Thêm vào apiService.js của bạn
+    adminGetAllBlogs: () => axiosClient.get('/blogs/admin'),
+    adminGetBlogDetail: (id) => axiosClient.get(`/blogs/admin/${id}`),
+    adminCreateBlog: (data) => axiosClient.post('/blogs/admin', data),
+    adminUpdateBlog: (id, data) => axiosClient.put(`/blogs/admin/${id}`, data),
+    adminDeleteBlog: (id) => axiosClient.delete(`/blogs/admin/${id}`),
+    adminPublishBlog: (id, isPublished) => axiosClient.post(`/blogs/admin/${id}/publish?published=${isPublished}`),
+    getBlogCategories: () => axiosClient.get('/blogs/categories')
+
+
 };
 
 export default apiService;
