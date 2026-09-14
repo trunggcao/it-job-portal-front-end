@@ -34,7 +34,7 @@ function CreateJob() {
                 setAvailableSkills(response.data || []);
             } catch (error) {
                 console.error("Lỗi khi lấy danh sách kỹ năng:", error);
-                setMessage({ type: 'danger', text: '⚠️ Không thể tải danh sách kỹ năng từ hệ thống!' });
+                setMessage({ type: 'danger', text: ' Không thể tải danh sách kỹ năng từ hệ thống!' });
             } finally {
                 setFetchingSkills(false);
             }
@@ -67,7 +67,7 @@ function CreateJob() {
         e.preventDefault();
 
         if (formData.selectedSkills.length === 0) {
-            setMessage({ type: 'danger', text: '❌ Vui lòng chọn ít nhất một kỹ năng yêu cầu!' });
+            setMessage({ type: 'danger', text: ' Vui lòng chọn ít nhất một kỹ năng yêu cầu!' });
             return;
         }
 
@@ -86,13 +86,12 @@ function CreateJob() {
             startDate: new Date().toISOString().split('T')[0],
             endDate: formData.endDate,
             isActive: true,
-            companyId: 1, // Thay bằng ID thực tế của User/Company đăng nhập
             skills: formData.selectedSkills
         };
 
         try {
             await apiService.createJob(jobDataPayload);
-            setMessage({ type: 'success', text: '🎉 Đăng tin tuyển dụng mới thành công!' });
+            setMessage({ type: 'success', text: ' Đăng tin tuyển dụng mới thành công!' });
 
             setTimeout(() => {
                 navigate('/employer/dashboard');
@@ -100,7 +99,7 @@ function CreateJob() {
         } catch (error) {
             setMessage({
                 type: 'danger',
-                text: error.response?.data?.message || '❌ Lỗi hệ thống, không thể đăng bài!'
+                text: error.response?.data?.message || ' Lỗi hệ thống, không thể đăng bài!'
             });
         } finally {
             setLoading(false);

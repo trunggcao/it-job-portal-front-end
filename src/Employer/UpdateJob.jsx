@@ -68,7 +68,7 @@ function UpdateJob() {
 
             } catch (error) {
                 console.error("Lỗi khi tải dữ liệu cập nhật:", error);
-                setMessage({ type: 'danger', text: '⚠️ Không thể tải thông tin bài đăng công việc hoặc danh sách kỹ năng!' });
+                setMessage({ type: 'danger', text: ' Không thể tải thông tin bài đăng công việc hoặc danh sách kỹ năng!' });
             } finally {
                 // Tắt màn hình chờ sau khi tất cả dữ liệu ĐÃ NẠP XONG vào Form State
                 setFetchingData(false);
@@ -110,7 +110,7 @@ function UpdateJob() {
         e.preventDefault();
 
         if (formData.selectedSkills.length === 0) {
-            setMessage({ type: 'danger', text: '❌ Vui lòng chọn ít nhất một kỹ năng yêu cầu!' });
+            setMessage({ type: 'danger', text: ' Vui lòng chọn ít nhất một kỹ năng yêu cầu!' });
             return;
         }
 
@@ -138,7 +138,7 @@ function UpdateJob() {
             // id tương ứng với jobId, jobDataPayload tương ứng với jobDTO
             await apiService.updateJob(id, jobDataPayload);
 
-            setMessage({ type: 'success', text: '🎉 Cập nhật thông tin tuyển dụng thành công!' });
+            setMessage({ type: 'success', text: ' Cập nhật thông tin tuyển dụng thành công!' });
 
             setTimeout(() => {
                 navigate('/employer/dashboard');
@@ -147,7 +147,7 @@ function UpdateJob() {
             console.error("Lỗi khi cập nhật tin bài:", error);
             setMessage({
                 type: 'danger',
-                text: error.response?.data?.message || '❌ Lỗi hệ thống, không thể cập nhật bài đăng!'
+                text: error.response?.data?.message || ' Lỗi hệ thống, không thể cập nhật bài đăng!'
             });
         } finally {
             setLoading(false);
