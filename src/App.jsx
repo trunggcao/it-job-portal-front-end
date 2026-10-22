@@ -32,6 +32,7 @@ import CandidateProfile from './Candidate/CandidateProfile/CandidateProfile';
 import CandidateDetail from './Employer/FindCandidate/CandidateDetail';
 import BlogListPage from './Blog/BlogListPage';
 import BlogDetailPage from './Blog/BlogDetailPage';
+import PointCheckout from './Payment/PointCheckout';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -145,6 +146,12 @@ function App() {
           <Route path="/employer/candidate-cv/:id" element={
             <EmployerRoute>
               <CandidateDetail />
+            </EmployerRoute>
+          } />
+          {/* Trang thanh toan */}
+          <Route path="/employer/buy-points" element={
+            <EmployerRoute>
+              <PointCheckout />
             </EmployerRoute>
           } />
         </Route>

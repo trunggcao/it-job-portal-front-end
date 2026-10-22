@@ -174,14 +174,17 @@ const apiService = {
     },
 
     // admin blog
-    // Thêm vào apiService.js của bạn
     adminGetAllBlogs: () => axiosClient.get('/blogs/admin'),
     adminGetBlogDetail: (id) => axiosClient.get(`/blogs/admin/${id}`),
     adminCreateBlog: (data) => axiosClient.post('/blogs/admin', data),
     adminUpdateBlog: (id, data) => axiosClient.put(`/blogs/admin/${id}`, data),
     adminDeleteBlog: (id) => axiosClient.delete(`/blogs/admin/${id}`),
     adminPublishBlog: (id, isPublished) => axiosClient.post(`/blogs/admin/${id}/publish?published=${isPublished}`),
-    getBlogCategories: () => axiosClient.get('/blogs/categories')
+    getBlogCategories: () => axiosClient.get('/blogs/categories'),
+
+    createCheckoutSession: (stripeRequest) => {
+        return axiosClient.post('/checkout', stripeRequest);
+    },
 
 
 };
