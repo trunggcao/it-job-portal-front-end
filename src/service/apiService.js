@@ -182,9 +182,13 @@ const apiService = {
     adminPublishBlog: (id, isPublished) => axiosClient.post(`/blogs/admin/${id}/publish?published=${isPublished}`),
     getBlogCategories: () => axiosClient.get('/blogs/categories'),
 
+    // payment API
     createCheckoutSession: (stripeRequest) => {
         return axiosClient.post('/checkout', stripeRequest);
     },
+    getPackages: () => {
+        return axiosClient.get('/packages');
+    }
 
 
 };

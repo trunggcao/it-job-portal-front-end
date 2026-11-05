@@ -1,32 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import apiService from '../service/apiService';
 import './PointCheckout.css';
 
-const packages = [
-    { id: 1, name: 'Basic 1', points: 10, amount: 10000 },
-    { id: 2, name: 'Standard', points: 50, amount: 50000 },
-    { id: 3, name: 'Premium', points: 100, amount: 100000 },
-    { id: 4, name: 'Pro', points: 200, amount: 180000 },
-    { id: 5, name: 'VIP', points: 500, amount: 420000 },
-    { id: 6, name: 'Ultimate', points: 1000, amount: 800000 },
-];
-
 export default function PointCheckout() {
-    // Mặc định chọn gói Standard
-    const [selectedPackage, setSelectedPackage] = useState(packages[1]);
+    const [packages, setPackages] = useState([]);
+    const [selectedPackage, setSelectedPackage] = useState(null);
+    const [packagesLoading, setPackagesLoading] = useState(true);
+    const [packagesError, setPackagesError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        let isMounted = true;
+
+        const loadPackages = async () => {
+            try {
+                const response = await apiService.getPackages();
+                const data = response?.data ?? response;
+
+                if (!Array.isArray(data)) {
+                    throw new Error('Dữ liệu gói điểm không hợp lệ');
+                }
+
+                const activePackages = data.filter((pkg) => pkg.isActive);
+                const defaultPackage = activePackages.find(
+                    (pkg) => pkg.name?.toLowerCase() === 'standard'
+                ) ?? activePackages[0] ?? null;
+
+                if (isMounted) {
+                    setPackages(activePackages);
+                    setSelectedPackage(defaultPackage);
+                }
+            } catch (error) {
+                console.error('Lỗi tải gói điểm:', error);
+                if (isMounted) {
+                    setPackagesError(error?.response?.data?.message || error.message || 'Không thể tải danh sách gói điểm');
+                }
+            } finally {
+                if (isMounted) {
+                    setPackagesLoading(false);
+                }
+            }
+        };
+
+        loadPackages();
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     const handleCheckout = async () => {
+        if (!selectedPackage) return;
+
         setLoading(true);
         try {
-            const stripeRequest = {
-                name: `Nạp ${selectedPackage.points} Points (${selectedPackage.name})`,
-                amount: selectedPackage.amount,
+            const checkoutRequest = {
+                packageId: selectedPackage.id,
                 quantity: 1,
                 currency: 'vnd'
             };
 
-            const response = await apiService.createCheckoutSession(stripeRequest);
+            const response = await apiService.createCheckoutSession(checkoutRequest);
             const data = response?.data ?? response;
 
             if (data?.status !== 'SUCCESS' || !data?.sessionUrl) {
@@ -54,7 +87,13 @@ export default function PointCheckout() {
                 <div class="row g-4 align-items-start">
                     <div class="col-lg-8">
                         <div class="row g-3">
-                            {packages.map((pkg) => {
+                            {packagesLoading ? (
+                                <div class="col-12 text-center text-secondary">Đang tải các gói điểm...</div>
+                            ) : packagesError ? (
+                                <div class="col-12 text-center text-danger">{packagesError}</div>
+                            ) : packages.length === 0 ? (
+                                <div class="col-12 text-center text-secondary">Hiện chưa có gói điểm khả dụng.</div>
+                            ) : packages.map((pkg) => {
                                 const isActive = selectedPackage.id === pkg.id;
                                 return (
                                     <div class="col-md-4" key={pkg.id}>
@@ -64,7 +103,7 @@ export default function PointCheckout() {
                                         >
                                             <div class="pricing-header">
                                                 <div class="plan-title">{pkg.name}</div>
-                                                <div class="plan-price">{pkg.amount.toLocaleString('vi-VN')}đ</div>
+                                                <div class="plan-price">{Number(pkg.price).toLocaleString('vi-VN')}đ</div>
                                                 <div class="text-secondary small mt-1">{pkg.points} Points</div>
                                             </div>
                                             <div class="wave-footer">
@@ -86,21 +125,21 @@ export default function PointCheckout() {
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-secondary">Gói đang chọn:</span>
                                 <span className="selected-package fw-bold">
-                                    {selectedPackage.name} ({selectedPackage.points} Points)
+                                    {selectedPackage ? `${selectedPackage.name} (${selectedPackage.points} Points)` : '-'}
                                 </span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary">
                                 <span class="text-secondary">Tổng thanh toán:</span>
                                 <span class="fw-bold fs-4 text-white">
-                                    {selectedPackage.amount.toLocaleString('vi-VN')} VNĐ
+                                    {selectedPackage ? `${Number(selectedPackage.price).toLocaleString('vi-VN')} VNĐ` : '-'}
                                 </span>
                             </div>
 
                             <button
                                 className="btn btn-checkout w-100 fs-6"
                                 onClick={handleCheckout}
-                                disabled={loading}
+                                disabled={loading || packagesLoading || !selectedPackage}
                             >
                                 {loading ? (
                                     <>
