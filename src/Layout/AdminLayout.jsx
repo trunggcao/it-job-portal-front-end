@@ -61,6 +61,12 @@ function AdminLayout() {
                         <Link to="/admin/blogs" className={`nav-link border-0 text-start ${isActive('/admin/blogs')}`}>
                             <i className="bi bi-newspaper"></i> Bài viết (Blog)
                         </Link>
+                        <Link to="/admin/payment-packages" className={`nav-link border-0 text-start ${isActive('/admin/payment-packages')}`}>
+                            <i className="bi bi-wallet2"></i> Gói thanh toán
+                        </Link>
+                        <Link to="/admin/payment-transactions" className={`nav-link border-0 text-start ${isActive('/admin/payment-transactions')}`}>
+                            <i className="bi bi-receipt"></i> Lịch sử giao dịch
+                        </Link>
                     </div>
                 </div>
 

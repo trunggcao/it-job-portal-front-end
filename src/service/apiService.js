@@ -188,6 +188,21 @@ const apiService = {
     },
     getPackages: () => {
         return axiosClient.get('/packages');
+    },
+
+    // ADMIN payment packages API
+    getAllPackages: () => {
+        return axiosClient.get('/admin/packages');
+    },
+    createPackage: (packageDTO) => {
+        return axiosClient.post('/admin/packages', packageDTO);
+    },
+    updatePackage: (id, isActive) => {
+        return axiosClient.patch(`/admin/packages/${id}`, { isActive });
+    },
+    // ADMIN payment transactions API
+    getAllTransactions: () => {
+        return axiosClient.get('/admin/transactions');
     }
 
 

@@ -33,6 +33,8 @@ import CandidateDetail from './Employer/FindCandidate/CandidateDetail';
 import BlogListPage from './Blog/BlogListPage';
 import BlogDetailPage from './Blog/BlogDetailPage';
 import PointCheckout from './Payment/PointCheckout';
+import AdminPaymenPackages from './Admin/Payment/AdminPaymenPackages';
+import AdminPaymentTransactions from './Admin/Payment/AdminPaymentTransactions';
 
 // Component bọc bảo vệ Route phân quyền
 const EmployerRoute = ({ children }) => {
@@ -168,6 +170,8 @@ function App() {
           <Route path="skills" element={<AdminSkills />} />
           <Route path="companyverifications" element={<AdminCompanyVerifications />} />
           <Route path="companyverifications/:id" element={<AdminDetailCompanyVerification />} />
+          <Route path="payment-packages" element={<AdminPaymenPackages />} />
+          <Route path="payment-transactions" element={<AdminPaymentTransactions />} />
         </Route>
       </Routes>
     </>

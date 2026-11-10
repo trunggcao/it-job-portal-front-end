@@ -1,0 +1,98 @@
+.admin-payment-page {
+    color: #1e293b;
+}
+
+.admin-payment-card {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e8edf3;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.admin-payment-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.admin-payment-card .table th {
+    padding: 14px 16px;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.admin-payment-card .table td {
+    padding: 15px 16px;
+}
+
+.admin-package-switch {
+    cursor: pointer;
+}
+
+.admin-package-switch:disabled {
+    cursor: not-allowed;
+}
+
+.admin-payment-card .form-check-label {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.admin-package-switch:disabled + .form-check-label {
+    cursor: not-allowed;
+}
+
+.admin-payment-modal-backdrop {
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.admin-payment-modal {
+    width: min(100%, 480px);
+    padding: 24px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+}
+
+.admin-payment-empty {
+    display: flex;
+    min-height: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.admin-payment-empty-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 16px;
+    place-items: center;
+    color: #0d6efd;
+    background: #eff6ff;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 575px) {
+    .admin-payment-card {
+        padding: 16px;
+    }
+
+    .admin-payment-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
