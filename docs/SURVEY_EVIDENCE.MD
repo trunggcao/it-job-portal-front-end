@@ -147,7 +147,7 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 ---
 
-## 6. Ánh xạ nhu cầu vào chức năng và KPI
+## 6. KẾT LUẬN VÀ ÁNH XẠ VÀO BẢN ĐẶC TẢ YÊU CẦU (SRS/SDD MAPPING)
 
 Kết quả phỏng vấn 3 bên liên quan đã chứng minh tính thực tiễn vững chắc của đề tài, đồng thời là cơ sở trực tiếp để định hình các yêu cầu kỹ thuật trong tài liệu SRS/SDD:
 
@@ -160,8 +160,6 @@ Kết quả phỏng vấn 3 bên liên quan đã chứng minh tính thực tiễ
 | Nhà tuyển dụng cần xử lý hồ sơ hiệu quả | Danh sách ứng viên và cập nhật trạng thái | FEAT-06, FEAT-07 |
 | Luồng ứng tuyển có thể bị bỏ dở | Luồng ứng tuyển rõ ràng và xác nhận gửi thành công | FEAT-04 |
 
----
-
-## 7. Kết luận
+## Kết luận
 
 Đề tài tập trung vào giai đoạn bắt đầu sự nghiệp IT: làm rõ cấp độ công việc, hỗ trợ ứng viên thể hiện dự án và giúp nhà tuyển dụng quản lý hồ sơ đầu vào. So với TopCV (tuyển dụng tổng hợp), ITviec (tập trung IT) và LinkedIn (mạng lưới nghề nghiệp rộng), hướng khác biệt của đề tài là chuyên biệt hóa trải nghiệm Intern/Fresher/Junior, không phải cạnh tranh về quy mô tin hay mạng lưới.
