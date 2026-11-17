@@ -5,7 +5,6 @@
 - **Sinh viên thực hiện:**
     1. Cao Quốc Trung — MSSV: `22110255` (Trưởng nhóm)
 - **Giảng viên hướng dẫn (GVHD):** ThS. Nguyễn Minh Đạo
-- **Giảng viên phản biện (GVPB):** TS. Huỳnh Xuân Phụng
 - **Căn cứ đánh giá:** Tiêu chí **TC1 (10 điểm)** — Chuẩn Rubric Khoa CNTT & Cổng kiểm tra hồ sơ đồ án.
 
 ## 1. Bối cảnh và vấn đề cần giải quyết
