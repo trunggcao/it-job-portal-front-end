@@ -65,30 +65,25 @@ Sinh viên cam kết hoàn thiện các chức năng cốt lõi dưới đây, t
 
 ---
 
-## 3. BỘ 5 CHỈ SỐ KPI NGHIỆP VỤ ĐỊNH LƯỢNG
+## 3. DANH MỤC TỐI THIỂU 5 KPI NGHIỆP VỤ ĐỊNH LƯỢNG
 
-Theo yêu cầu Tiêu chuẩn Đánh giá TC1 (Mức 5) và TC2.2 của Rubric, sinh viên cam kết hoàn thành và kiểm chứng bộ 5 chỉ số định lượng sau đây từ Bước 3 cho đến khi bảo vệ trước Hội đồng:
+Theo yêu cầu Tiêu chuẩn Đánh giá TC1 (Mức 5) và TC2.2 của Rubric, sinh viên cam kết kiểm chứng các KPI sau từ Bước 3 cho đến khi bảo vệ trước Hội đồng:
 
-| Mã KPI | Tên chỉ số | Mô tả và công thức đo lường | Ngưỡng cam kết (Target) | Phương pháp và bằng chứng kiểm chứng |
-|---|---|---|---|---|
-| **KPI-01** | **Tìm kiếm và lọc việc phù hợp** | Độ chính xác của kết quả lọc theo điều kiện người dùng chọn; thời gian tải danh sách tin trong kịch bản kiểm thử đã định. | • **100%** kết quả trong bộ kiểm thử thỏa các bộ lọc đã chọn.<br>• Thời gian hiển thị kết quả tìm kiếm/lọc **≤ 3 giây** trong môi trường nghiệm thu. | Bộ kiểm thử chức năng với dữ liệu tin tuyển dụng có cấp độ, kỹ năng, địa điểm và hình thức làm việc đã biết; ghi nhận thời gian trên môi trường nghiệm thu. |
-| **KPI-02** | **Hoàn thành hồ sơ và ứng tuyển** | Tỷ lệ người thử nghiệm hoàn thành luồng tạo/cập nhật hồ sơ, tìm tin và gửi hồ sơ ứng tuyển mà không cần trợ giúp. | • Ít nhất **10 người** thuộc nhóm sinh viên năm cuối/người mới tốt nghiệp tham gia.<br>• Tỷ lệ hoàn thành luồng ứng viên **≥ 85%**.<br>• Hồ sơ gửi thành công được ghi nhận đúng tin và đúng ứng viên trong **100%** ca kiểm thử. | Danh sách tác vụ, kết quả từng người tham gia và kiểm tra dữ liệu ứng tuyển sau khi chạy luồng. |
-| **KPI-03** | **Quản lý tin và xử lý hồ sơ ứng viên** | Tỷ lệ nhà tuyển dụng hoàn thành các tác vụ tạo tin có cấu trúc, xem hồ sơ và cập nhật trạng thái ứng viên. | • Tỷ lệ hoàn thành các tác vụ chính **≥ 85%**.<br>• Thông tin kỹ năng bắt buộc/ưu tiên và cấp độ được lưu, hiển thị chính xác trong **100%** ca kiểm thử.<br>• Trạng thái sau cập nhật được phản ánh chính xác cho ứng viên trong **100%** ca kiểm thử. | Kịch bản kiểm thử vai trò nhà tuyển dụng và ứng viên; đối chiếu dữ liệu đã lưu với giao diện hai vai trò. |
-| **KPI-04** | **Hiệu năng và tương thích giao diện** | Thời gian tải các trang nghiệp vụ chính và khả năng sử dụng các luồng chính trên kích thước màn hình phổ biến. | • Thời gian tải trang chính **≤ 3 giây** ở môi trường kiểm thử đã công bố.<br>• Các luồng tìm việc, xem tin và ứng tuyển sử dụng được trên màn hình desktop.<br>• Không có lỗi chặn luồng (blocker) trong các kịch bản nghiệm thu. | Báo cáo đo hiệu năng trên môi trường nghiệm thu. |
-| **KPI-05** | **Chất lượng và độ tin cậy chức năng** | Mức độ ổn định của các ca kiểm thử tự động/thủ công và số lỗi nghiêm trọng còn tồn tại tại thời điểm bàn giao. | • **100%** ca kiểm thử đạt trước nghiệm thu.<br>• Độ bao phủ kiểm thử các luồng nghiệp vụ cốt lõi **≥ 70%**.<br>• **0** lỗi Blocker/Critical chưa xử lý trong các chức năng thuộc phạm vi cam kết. | Báo cáo test, checklist nghiệm thu theo FEAT-01 đến FEAT-07 và danh sách lỗi đã xử lý/còn tồn tại. |
+1. **KPI 1 — Tìm kiếm và lọc việc phù hợp:** 100% kết quả trong bộ kiểm thử thỏa các bộ lọc đã chọn; thời gian hiển thị kết quả tìm kiếm/lọc không quá 3 giây.
+2. **KPI 2 — Hoàn thành hồ sơ và ứng tuyển:** Có ít nhất 10 người thuộc nhóm sinh viên năm cuối/người mới tốt nghiệp tham gia thử nghiệm; tỷ lệ hoàn thành luồng ứng viên không cần trợ giúp đạt ít nhất 85%; 100% hồ sơ gửi thành công được ghi nhận đúng tin và đúng ứng viên.
+3. **KPI 3 — Quản lý tin và xử lý hồ sơ ứng viên:** Tỷ lệ hoàn thành tác vụ chính của nhà tuyển dụng đạt ít nhất 85%; thông tin tin tuyển dụng và trạng thái ứng viên được lưu, hiển thị chính xác trong 100% ca kiểm thử.
+4. **KPI 4 — Hiệu năng và tương thích giao diện:** Thời gian tải trang nghiệp vụ chính dưới 1,5 giây trong môi trường nghiệm thu; các luồng tìm việc, xem tin và ứng tuyển sử dụng được trên desktop và thiết bị di động.
+5. **KPI 5 — Chất lượng và độ tin cậy chức năng:** 100% ca kiểm thử thuộc phạm vi cam kết đạt trước nghiệm thu; độ bao phủ kiểm thử các luồng nghiệp vụ cốt lõi đạt ít nhất 50%; không còn lỗi Blocker/Critical chưa xử lý.
 
 ---
 
-## 4. CAM KẾT TRIỂN KHAI VÀ NGHIỆM THU
+## 4. BẢNG METRIC KỸ THUẬT ĐIỀU CHỈNH (THEO THỎA THUẬN VỚI GVHD)
 
-1. **Môi trường vận hành:**
-   - Cung cấp phiên bản website có thể truy cập để giảng viên và hội đồng kiểm tra; nếu hạ tầng triển khai công khai không khả dụng, cung cấp hướng dẫn chạy và dữ liệu/tài khoản kiểm thử tại môi trường thay thế.
-   - Không đưa thông tin cá nhân thật hoặc bí mật truy cập vào dữ liệu demo, mã nguồn công khai hay tài liệu bàn giao.
-2. **Kịch bản demo trực tiếp:**
-   - Ứng viên cập nhật hồ sơ và dự án → tìm/lọc tin Intern/Fresher/Junior → xem chi tiết yêu cầu → ứng tuyển → theo dõi trạng thái.
-   - Nhà tuyển dụng tạo tin có cấu trúc → xem hồ sơ ứng tuyển và dự án → cập nhật trạng thái → ứng viên kiểm tra trạng thái mới.
-   - Quản trị viên xem và xử lý một tin hoặc nội dung được báo cáo theo quyền được cấp.
----
+| Tiêu chí kỹ thuật | Chuẩn mặc định của Rubric | Chuẩn cam kết điều chỉnh | Ghi chú lý do điều chỉnh |
+|---|---|---|---|
+| Độ phủ kiểm thử (TC2.5) | ≥ 70% dòng lệnh | ≥ 50% dòng lệnh cốt lõi | Hệ thống tập trung logic backend. |
+| Triển khai CI/CD (TC2.6) | 6 chặng pipeline | 5 chặng (Build, Lint, Test, Scan, Deploy) | Phù hợp quy mô triển khai và hạ tầng VPS Staging. |
+| Thời gian phản hồi trang | < 2,0 giây | < 1,5 giây | Tập trung tối ưu tài nguyên và thời gian hiển thị các trang nghiệp vụ chính. |
 
 ## 5. CAM KẾT ĐÓNG GÓP VÀ TRÁCH NHIỆM
 
