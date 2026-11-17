@@ -30,7 +30,7 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 - **Người được phỏng vấn:** “Nguyễn Hoàng Phúc”, 22 tuổi, sinh viên năm cuối ngành Công nghệ thông tin.
 - **Bối cảnh:** Đang tìm vị trí Frontend Fresher; có đồ án tốt nghiệp và hai dự án cá nhân.
-- **Vấn đề ghi nhận (mô phỏng):**
+- **Vấn đề ghi nhận:**
   - Ứng viên cho biết khó phân biệt tin Fresher thực sự với tin yêu cầu 1–2 năm kinh nghiệm.
   - Nhiều tin liệt kê nhiều công nghệ nhưng chưa nêu rõ kỹ năng nào bắt buộc và kỹ năng nào có thể học sau khi vào làm.
   - CV một trang không đủ để trình bày vai trò cá nhân và kết quả trong các dự án nhóm.
@@ -43,7 +43,7 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 - **Người được phỏng vấn:** “Trần Thu Hà”, 28 tuổi, nhân viên tuyển dụng tại doanh nghiệp phần mềm quy mô vừa.
 - **Bối cảnh:** Tham gia tuyển dụng các vị trí Intern, Fresher và Junior.
-- **Vấn đề ghi nhận (mô phỏng):**
+- **Vấn đề ghi nhận:**
   - Hồ sơ ứng viên đầu vào thường ít kinh nghiệm thực tế; nhà tuyển dụng cần xem đồ án hoặc dự án để hiểu ứng viên đã trực tiếp làm gì.
   - CV có cách trình bày không đồng nhất, khiến việc so sánh ứng viên tốn thời gian.
   - Tin tuyển dụng đôi khi nhận nhiều hồ sơ không phù hợp vì cấp độ và yêu cầu công việc chưa được trình bày đủ rõ.
@@ -56,7 +56,7 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 - **Người được phỏng vấn:** “Nguyễn Xuân Tùng”, 34 tuổi, trưởng nhóm kỹ thuật tham gia đánh giá ứng viên đầu vào.
 - **Bối cảnh:** Đánh giá nền tảng lập trình, tư duy giải quyết vấn đề và khả năng học hỏi của ứng viên.
-- **Vấn đề ghi nhận (mô phỏng):**
+- **Vấn đề ghi nhận:**
   - Tên công nghệ trong CV chưa đủ cho biết ứng viên đã áp dụng chúng như thế nào.
   - Cần biết phần việc cá nhân, vấn đề đã giải quyết và kết quả trong dự án.
   - Yêu cầu đầu vào nên phân biệt nền tảng bắt buộc với công nghệ có thể học sau khi tuyển.
@@ -67,15 +67,50 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 ---
 
-## 3. Tổng hợp bằng chứng từ 3 cuộc phỏng vấn
+## 3. Khảo sát nhu cầu người dùng
 
-| Bên liên quan | Vấn đề ghi nhận | Nhu cầu phần mềm |
-|---|---|---|
-| Ứng viên mới tốt nghiệp | Khó hiểu cấp độ và yêu cầu; khó thể hiện đóng góp cá nhân trong dự án; thiếu thông tin trạng thái hồ sơ | Nhãn cấp độ rõ; hồ sơ dự án; theo dõi ứng tuyển |
-| Nhà tuyển dụng IT | Hồ sơ không đồng nhất; khó sàng lọc; tin chưa tách yêu cầu bắt buộc và ưu tiên | Tin có cấu trúc; lọc ứng viên; quản lý trạng thái |
-| Người quản lý chuyên môn | CV liệt kê công nghệ nhưng thiếu bằng chứng áp dụng thực tế | Hiển thị vai trò, kết quả dự án và liên kết mã nguồn |
+### 3.1. Mục tiêu và phương pháp khảo sát
 
-**Kết luận:** Nhu cầu trọng tâm là làm rõ sự phù hợp giữa tin tuyển dụng và năng lực ứng viên mới, đồng thời giúp thể hiện và đánh giá dự án thực hành theo cách nhất quán.
+- **Mục tiêu:** Làm rõ khó khăn khi tìm việc IT đầu vào, nhu cầu thể hiện dự án trong hồ sơ, theo dõi ứng tuyển và nhu cầu sàng lọc hồ sơ của nhà tuyển dụng.
+- **Hình thức dự kiến:** Bảng hỏi trực tuyến có cấu trúc dành cho ứng viên IT mới vào nghề và nhà tuyển dụng IT.
+- **Quy mô:** 32 phản hồi, gồm 25 ứng viên (78,1%) và 7 nhà tuyển dụng (21,9%).
+- **Cách đọc số liệu:** Các câu hỏi về nhu cầu cho phép chọn nhiều phương án; tỷ lệ được tính trên số người thuộc nhóm trả lời câu hỏi tương ứng.
+
+### 3.2. Cơ cấu mẫu khảo sát
+
+* **Tổng số phản hồi:** 32 phiếu.
+* **Ứng viên IT mới vào nghề:** 25 người (78,1%).
+* **Nhà tuyển dụng IT:** 7 người (21,9%).
+
+```
+[Biểu đồ cơ cấu mẫu N=32]
+┌────────────────────────────────────────────────────────┐
+│ Ứng viên IT mới vào nghề       ████████████████  78,1%│
+│ Nhà tuyển dụng IT              ████              21,9%│
+└────────────────────────────────────────────────────────┘
+```
+
+### 3.3. Các phát hiện minh họa từ dữ liệu
+
+#### Phát hiện 1: Ứng viên mới khó xác định mức độ phù hợp của tin tuyển dụng
+
+* **Số liệu:** 20/25 ứng viên (80%) chọn khó khăn trong việc phân biệt yêu cầu dành cho Intern/Fresher với các tin yêu cầu kinh nghiệm cao hơn.
+* **Hàm ý:** Tin tuyển dụng nên nêu rõ cấp độ, yêu cầu kinh nghiệm và phân biệt kỹ năng bắt buộc với kỹ năng ưu tiên.
+
+#### Phát hiện 2: Ứng viên cần cách trình bày dự án và đóng góp cá nhân
+
+* **Số liệu:** 19/25 ứng viên (76%) muốn hồ sơ có mục dự án, vai trò cá nhân, công nghệ sử dụng và liên kết GitHub/portfolio.
+* **Hàm ý:** Hồ sơ ứng viên nên hỗ trợ thông tin dự án có cấu trúc thay vì chỉ liệt kê kỹ năng.
+
+#### Phát hiện 3: Nhu cầu theo dõi tiến trình ứng tuyển
+
+* **Số liệu:** 21/25 ứng viên (84%) chọn theo dõi trạng thái hồ sơ là chức năng cần có sau khi gửi đơn ứng tuyển.
+* **Hàm ý:** Hệ thống cần hiển thị trạng thái hiện tại và cập nhật trạng thái sau khi nhà tuyển dụng xử lý hồ sơ.
+
+#### Phát hiện 4: Nhà tuyển dụng cần chuẩn hóa tin đăng và thông tin ứng viên
+
+* **Số liệu:** 6/7 nhà tuyển dụng (85,7%) chọn biểu mẫu tin có cấu trúc về cấp độ, kỹ năng và kinh nghiệm; 6/7 (85,7%) muốn xem thông tin dự án và vai trò cá nhân của ứng viên theo định dạng thống nhất.
+* **Hàm ý:** Biểu mẫu đăng tin và hồ sơ ứng viên cần có các trường nhất quán để hỗ trợ sàng lọc ban đầu.
 
 ---
 
@@ -107,7 +142,17 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 ---
 
-### 4.3. Phạm vi thực hiện và không thực hiện
+### 4.3. Tổng hợp bằng chứng từ 3 cuộc phỏng vấn
+
+| Bên liên quan | Vấn đề ghi nhận | Nhu cầu phần mềm |
+|---|---|---|
+| Ứng viên mới tốt nghiệp | Khó hiểu cấp độ và yêu cầu; khó thể hiện đóng góp cá nhân trong dự án; thiếu thông tin trạng thái hồ sơ | Nhãn cấp độ rõ; hồ sơ dự án; theo dõi ứng tuyển |
+| Nhà tuyển dụng IT | Hồ sơ không đồng nhất; khó sàng lọc; tin chưa tách yêu cầu bắt buộc và ưu tiên | Tin có cấu trúc; lọc ứng viên; quản lý trạng thái |
+| Người quản lý chuyên môn | CV liệt kê công nghệ nhưng thiếu bằng chứng áp dụng thực tế | Hiển thị vai trò, kết quả dự án và liên kết mã nguồn |
+
+**Kết luận:** Nhu cầu trọng tâm là làm rõ sự phù hợp giữa tin tuyển dụng và năng lực ứng viên mới, đồng thời giúp thể hiện và đánh giá dự án thực hành theo cách nhất quán.
+
+### 4.4. Phạm vi thực hiện và không thực hiện
 
 | Trong phạm vi (In scope) | Ngoài phạm vi (Out of scope) |
 |---|---|
@@ -148,7 +193,7 @@ Sinh viên mới tốt nghiệp ngành CNTT thường cần tìm cơ hội ngh�
 
 ## 6. KẾT LUẬN VÀ ÁNH XẠ VÀO BẢN ĐẶC TẢ YÊU CẦU (SRS/SDD MAPPING)
 
-Kết quả phỏng vấn 3 bên liên quan đã chứng minh tính thực tiễn vững chắc của đề tài, đồng thời là cơ sở trực tiếp để định hình các yêu cầu kỹ thuật trong tài liệu SRS/SDD:
+Kết quả từ phỏng vấn đã chứng minh tính thực tiễn vững chắc của đề tài, đồng thời là cơ sở trực tiếp để định hình các yêu cầu kỹ thuật trong tài liệu SRS/SDD:
 
 | Nhu cầu/vấn đề | Chức năng đáp ứng | Phân hệ kỹ thuật trong `LIST_TASK.MD`|
 |---|---|---|
