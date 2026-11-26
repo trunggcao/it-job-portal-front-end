@@ -1,5 +1,5 @@
-import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
+import NotificationBell from '../components/NotificationBell';
 import './MainLayout.css';
 
 function MainLayout() {
@@ -101,8 +101,10 @@ function MainLayout() {
                                     </Link>
                                 </>
                             ) : (
-                                // === GIAO DIỆN KHI ĐÃ ĐĂNG NHẬP THÀNH CÔNG (CÓ DROPDOWN) ===
-                                <div className="dropdown">
+                                // === GIAO DIỆN KHI ĐÃ ĐĂNG NHẬP THÀNH CÔNG (CHUÔNG THÔNG BÁO + DROPDOWN PROFILE) ===
+                                <>
+                                    <NotificationBell token={token} />
+                                    <div className="dropdown">
                                     <a
                                         className="d-flex align-items-center text-decoration-none dropdown-toggle text-dark fw-medium"
                                         href="#"
@@ -151,7 +153,8 @@ function MainLayout() {
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                    </div>
+                                </>
                             )}
                         </div>
                     </div>

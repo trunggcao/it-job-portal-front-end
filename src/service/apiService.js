@@ -203,6 +203,20 @@ const apiService = {
     // ADMIN payment transactions API
     getAllTransactions: () => {
         return axiosClient.get('/admin/transactions');
+    },
+
+    // Notification API
+    getNotifications: () => {
+        return axiosClient.get('/notifications');
+    },
+    getUnreadNotificationCount: () => {
+        return axiosClient.get('/notifications/unread-count');
+    },
+    markNotificationAsRead: (id) => {
+        return axiosClient.patch(`/notifications/${id}/read`);
+    },
+    markAllNotificationsAsRead: () => {
+        return axiosClient.patch('/notifications/read-all');
     }
 
 
