@@ -27,7 +27,7 @@ Sinh viên IT mới tốt nghiệp thường tìm kiếm các vị trí **Intern
 
 ---
 
-## 4. PHẠM VI THỰC HIỆN (IN-SCOPE)
+## 3. PHẠM VI THỰC HIỆN (IN-SCOPE)
 
 1. **Tài khoản và hồ sơ ứng viên (FEAT-01):**
    - Hỗ trợ tài khoản và cho phép ứng viên tạo, cập nhật hồ sơ cơ bản, kỹ năng, học vấn và thông tin liên hệ cần thiết.
@@ -59,7 +59,7 @@ Sinh viên IT mới tốt nghiệp thường tìm kiếm các vị trí **Intern
 
 ---
 
-## 6. PHẠM VI KHÔNG THỰC HIỆN (OUT-OF-SCOPE)
+## 4. PHẠM VI KHÔNG THỰC HIỆN (OUT-OF-SCOPE)
 
 | # | Nội dung không thực hiện | Lý do |
 |:---:|---|---|
@@ -73,7 +73,7 @@ Sinh viên IT mới tốt nghiệp thường tìm kiếm các vị trí **Intern
 
 ---
 
-## 7.  CÔNG NGHỆ SỬ DỤNG
+## 5.  CÔNG NGHỆ SỬ DỤNG
 
 | Tầng | Công nghệ | Ghi chú |
 |---|---|---|
